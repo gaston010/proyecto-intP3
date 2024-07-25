@@ -1,0 +1,19 @@
+/* styles.css or your relevant stylesheet */
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.blink {
+    animation: blink 1s step-start infinite;
+}

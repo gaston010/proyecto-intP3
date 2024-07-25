@@ -1,6 +1,7 @@
 import LoginForm from "./components/Login";
 import Home from "./components/Home";
 import ForgotPassword from "./components/ForgotPassword";
+import News from "./components/News";
 import MainLayout from "./components/MainLayout";
 
 import { createBrowserRouter } from "react-router-dom";
@@ -22,6 +23,10 @@ const Router = createBrowserRouter([
         path: "/forgot",
         element: <ForgotPassword />,
       },
+      {
+        path: "/news",
+        element: <News />,
+      }
     ],
   },
 ]);
