@@ -3,11 +3,13 @@ import { useLocation, Link } from "react-router-dom";
 import { FaHome, FaUserPlus, FaKey } from "react-icons/fa";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { FcNews } from "react-icons/fc";
-import '../Style.css';
+import "../Style.css";
 
 function Navbar() {
   const location = useLocation();
-  {"useLocation: Obtiene la ubicación actual de la ruta. Esto permite saber cuál es la ruta activa en el navegador.";}
+  {
+    ("useLocation: Obtiene la ubicación actual de la ruta. Esto permite saber cuál es la ruta activa en el navegador.");
+  }
 
   const isLoginPage = location.pathname === "/login";
   const isForgotPage = location.pathname === "/forgot";

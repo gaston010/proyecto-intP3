@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
 import { LuLogIn } from "react-icons/lu";
 import { IoKey } from "react-icons/io5";
-import  '../Style.css';
+import "../Style.css";
 
 const LoginForm = () => {
-
   return (
     <div className="column is-one-third">
       <form>
@@ -47,9 +46,7 @@ const LoginForm = () => {
           </div>
           <div className="field is-grouped">
             <div className="control">
-              <button
-                className="button is-primary"
-              >
+              <button className="button is-primary">
                 <span>Login</span>
                 <span className="icon">
                   <LuLogIn />
@@ -57,10 +54,7 @@ const LoginForm = () => {
               </button>
             </div>
             <div className="control">
-              <Link
-                to="/forgot"
-                className="button is-link"
-              >
+              <Link to="/forgot" className="button is-link">
                 <span>Forgot password</span>
                 <span className="icon">
                   <IoKey />

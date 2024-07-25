@@ -1,10 +1,11 @@
+// import React from "react";
+import { createBrowserRouter } from "react-router-dom";
 import LoginForm from "./components/Login";
 import Home from "./components/Home";
 import ForgotPassword from "./components/ForgotPassword";
 import News from "./components/News";
 import MainLayout from "./components/MainLayout";
-
-import { createBrowserRouter } from "react-router-dom";
+import Underconstruction from "./components/Underconstruction";
 
 const Router = createBrowserRouter([
   {
@@ -26,8 +27,12 @@ const Router = createBrowserRouter([
       {
         path: "/news",
         element: <News />,
-      }
+      },
     ],
+  },
+  {
+    path: "*",
+    element: <Underconstruction />,
   },
 ]);
 
