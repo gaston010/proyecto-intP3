@@ -1,12 +1,10 @@
 // import React from "react";
 import { FaUser } from "react-icons/fa"; // Importa íconos de FontAwesome
 import { Link } from "react-router-dom";
-import Background from "./Background"; // Importa el componente de fondo si lo estás usando
+// import Background from "./Background"; // Importa el componente de fondo si lo estás usando
 
 const ForgotPasswordForm = () => {
   return (
-    <Background>
-      {" "}
       <div className="column is-one-third">
         <form>
           <div className="field">
@@ -36,7 +34,6 @@ const ForgotPasswordForm = () => {
           </div>
         </form>
       </div>
-    </Background>
   );
 };
 

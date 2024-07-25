@@ -3,13 +3,10 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { LuLogIn } from "react-icons/lu";
 import { IoKey } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import Background from "./Background"; // Importa el componente de fondo
+// import Background from "./Background"; // Importa el componente de fondo
 
 const LoginForm = () => {
   return (
-    <Background>
-      {" "}
-      {/* <div className="columns is-centered" style={backgroundStyle}> */}
       <div className="column is-one-third">
         <form>
           <div className="box has-background-transparent">
@@ -66,7 +63,6 @@ const LoginForm = () => {
           </div>
         </form>
       </div>
-    </Background>
   );
 };
 
