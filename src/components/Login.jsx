@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
 import { LuLogIn } from "react-icons/lu";
 import { IoKey } from "react-icons/io5";
+import Cookies from "js-cookie";
 import "../Style.css";
 
 const LoginForm = () => {
@@ -25,7 +26,7 @@ const LoginForm = () => {
     try {
       // Make API request (replace with your actual API endpoint)
       const response = await fetch(
-        " /api-auth/",
+        "https://sandbox.academiadevelopers.com/api-auth/",
         {
           method: "POST",
           headers: {
@@ -35,28 +36,35 @@ const LoginForm = () => {
         }
       );
 
-        // Handle successful login
+      if (response.ok) {
         const data = await response.json();
-        console.log("Login successful:", data);
+        const token = data.token;
 
-        // Store the token in the session storage to future API and use
-        Cookies.set("token", data.token, { secure: true });
-            // document.cookie = `token=${data.token}; secure=true;`;
+        // Store the token in a cookie
+        Cookies.set('authToken', token); // Expires in 7 days
 
-        // Redirect to Home page
-        navigate("/");
+        navigate("/");  
 
-      // if (response.ok) {
+        // Redirect or perform other actions
+        console.log('Login successful');
+      } else {
+        console.error('Login failed');
+      }
 
+      // if (!response.ok) {
+      //   console.log("Login failed:", response);
+      //   throw new Error('Credenciales incorrectas. Inténtalo de nuevo.');
       // } else {
-      //   // Handle error response
-      //   console.error("Login failed:", response.statusText);
-      //   // Show error message to user
+      //   // const data = await response.json();
+      //   console.log("Login successful:", response);
+      //   Cookies.set("isLogged", response.ok);
+      //   debugger;
+      //   navigate("/");  
       // }
-      
-    } catch (error) {
-      console.error("An error occurred:", error);
-      setError('Credenciales incorrectas. Inténtalo de nuevo.');
+
+    } catch (err) {
+      console.log("An error occurred:", error);
+      setError(err);
       // Show error message to user
     }
   };
