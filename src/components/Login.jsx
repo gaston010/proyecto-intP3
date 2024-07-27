@@ -24,7 +24,7 @@ const LoginForm = () => {
     try {
       // Make API request (replace with your actual API endpoint)
       const response = await fetch(
-        "https://sandbox.academiadevelopers.com/api-auth/",
+        " /api-auth/",
         {
           method: "POST",
           headers: {
@@ -38,6 +38,11 @@ const LoginForm = () => {
         // Handle successful login
         const data = await response.json();
         console.log("Login successful:", data);
+
+        // Store the token in the session storage to future API and use
+        Cookies.set("token", data.token, { secure: true });
+            // document.cookie = `token=${data.token}; secure=true;`;
+
         // Redirect to Home page
         navigate("/");
       } else {
