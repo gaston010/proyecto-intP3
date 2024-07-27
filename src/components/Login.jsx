@@ -9,6 +9,7 @@ const LoginForm = () => {
   // State to manage form inputs
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState('');
   const navigate = useNavigate(); // Hook to programmatically navigate
 
   // Handler for form submission
@@ -34,7 +35,6 @@ const LoginForm = () => {
         }
       );
 
-      if (response.ok) {
         // Handle successful login
         const data = await response.json();
         console.log("Login successful:", data);
@@ -45,13 +45,18 @@ const LoginForm = () => {
 
         // Redirect to Home page
         navigate("/");
-      } else {
-        // Handle error response
-        console.error("Login failed:", response.statusText);
-        // Show error message to user
-      }
+
+      // if (response.ok) {
+
+      // } else {
+      //   // Handle error response
+      //   console.error("Login failed:", response.statusText);
+      //   // Show error message to user
+      // }
+      
     } catch (error) {
       console.error("An error occurred:", error);
+      setError('Credenciales incorrectas. Inténtalo de nuevo.');
       // Show error message to user
     }
   };
