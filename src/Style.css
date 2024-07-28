@@ -1,5 +1,6 @@
-/* styles.css or your relevant stylesheet */
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @keyframes blink {
     0% {
         opacity: 1;
@@ -54,4 +55,9 @@
 .card-content{
     padding: 10px;
     height: 20%;
+}
+
+.slider-container{
+    width: 1200px;
+    display: contents;
 }
