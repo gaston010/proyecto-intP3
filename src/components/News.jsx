@@ -43,7 +43,7 @@ export function News() {
         <div className="grid justify-center">
           <Carousel data={newsData}></Carousel>
         </div>
-      </div>
+     </div>
     </div>
   );
 }
