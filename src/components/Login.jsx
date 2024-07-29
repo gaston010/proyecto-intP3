@@ -40,30 +40,16 @@ const LoginForm = () => {
         const data = await response.json();
         const token = data.token;
 
-        // Store the token in a cookie
-        Cookies.set('authToken', token); // Expires in 7 days
-
+        // Store the token in a cookie to future requests
+        Cookies.set('authToken', token); 
         navigate("/");  
 
         // Redirect or perform other actions
         console.log('Login successful');
-      } else {
-        console.error('Login failed');
       }
 
-      // if (!response.ok) {
-      //   console.log("Login failed:", response);
-      //   throw new Error('Credenciales incorrectas. Inténtalo de nuevo.');
-      // } else {
-      //   // const data = await response.json();
-      //   console.log("Login successful:", response);
-      //   Cookies.set("isLogged", response.ok);
-      //   debugger;
-      //   navigate("/");  
-      // }
-
     } catch (err) {
-      console.log("An error occurred:", error);
+      console.log("An error occurred:", err);
       setError(err);
       // Show error message to user
     }
@@ -130,6 +116,7 @@ const LoginForm = () => {
             </div>
           </div>
         </div>
+        {error && <div className="notification is-danger">{error}</div>}
       </form>
     </div>
   );
