@@ -1,6 +1,6 @@
 // import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import { FaHome, FaUserPlus, FaKey } from "react-icons/fa";
+import { FaHome, FaUserCircle, FaKey } from "react-icons/fa";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { FcNews } from "react-icons/fc";
 import "../Style.css";
@@ -14,9 +14,32 @@ function Navbar() {
   const isLoginPage = location.pathname === "/login";
   const isForgotPage = location.pathname === "/forgot";
 
+  const showSideMenu = true; // Set to true or false based on your requirement
+
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
+      <div>
+      </div>
+      {showSideMenu && (
+        <div className="navbar-start">
+          {/* Navbar side items */}
+          <select>
+          <option value="someOption"><span className="icon">
+            Profile
+            <FaUserCircle />
+            </span>
+          </option>
+          <option value="otherOption"><span className="icon">
+            Logout
+            <FaKey />
+            </span>
+          </option>
+          </select>
+        </div>
+      )}
+
       <div className="navbar-brand">
+        {/* Navbar main items */}
         <Link to="/" className="navbar-item">
           <span className="icon">
             {location.pathname === "/" ? <FcNews /> : <FaHome />}
@@ -46,18 +69,8 @@ function Navbar() {
                 className={`button is-primaty ${isLoginPage ? "blink" : ""}`}
               >
                 <span className="icon">
-                  <FaUserPlus />
+                  <FaUserCircle />
                 </span>
-                Login
-              </Link>
-              <Link
-                to="/forgot"
-                className={`button is-link ${isForgotPage ? "blink" : "blank"}`}
-              >
-                <span className="icon">
-                  <FaKey />
-                </span>
-                Forgot password
               </Link>
             </div>
           </div>
