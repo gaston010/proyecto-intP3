@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Carousel from "./Carousel";
+import GenreList from "./GenreList";
+import "bulma/css/bulma.min.css";
 
 export function News() {
   const [newsData, setNewsData] = useState([]);
@@ -36,16 +38,22 @@ export function News() {
   }, []);
 
   return (
-    <div className="flex">
-      <h1>News</h1>
-      <p>Welcome to the news page!</p>
-
-      <div className="flex">
-        <div className="grid justify-center">
-          <Carousel data={newsData}></Carousel>
+    <section className="section">
+      <div className="container">
+        <h1 className="title">News</h1>
+        <p className="subtitle">Welcome to the news page!</p>
+        <div className="columns">
+          <div className="column is-full">
+            <Carousel data={newsData} />
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column is-full">
+            <GenreList />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

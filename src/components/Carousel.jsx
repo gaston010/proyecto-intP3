@@ -2,7 +2,6 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import PropTypes from "prop-types";
 
 const Carousel = ({ data }) => {
   const settings = {
@@ -62,18 +61,6 @@ const Carousel = ({ data }) => {
       </Slider>
     </div>
   );
-};
-
-Carousel.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      image: PropTypes.string,
-      bio: PropTypes.string,
-      website: PropTypes.string,
-    })
-  ),
 };
 
 export default Carousel;
