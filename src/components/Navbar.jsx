@@ -8,7 +8,7 @@ import "../Style.css";
 function Navbar() {
   const location = useLocation();
   {
-    ("useLocation: Obtiene la ubicación actual de la ruta. Esto permite saber cuál es la ruta activa en el navegador.");
+    // useLocation: Gets the current location of the route. This allows you to know which route is active in the browser.
   }
 
   const isLoginPage = location.pathname === "/login";
