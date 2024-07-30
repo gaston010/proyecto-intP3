@@ -12,7 +12,7 @@ function Navbar() {
   }
 
   const isLoginPage = location.pathname === "/login";
-  const isForgotPage = location.pathname === "/forgot";
+  // const isForgotPage = location.pathname === "/forgot";
 
   const showSideMenu = true; // Set to true or false based on your requirement
 
@@ -52,11 +52,11 @@ function Navbar() {
           </span>
           News
         </Link>
-        <Link to="/ne" className="navbar-item">
+        <Link to="/genre" className="navbar-item">
           <span className="icon">
-            {location.pathname === "/ne" ? <FcNews /> : <FaRegNewspaper />}
+            {location.pathname === "/genre" ? <FcNews /> : <FaRegNewspaper />}
           </span>
-          Ne
+          GenreList
         </Link>
       </div>
 

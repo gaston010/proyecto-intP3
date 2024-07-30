@@ -6,6 +6,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import News from "./components/News";
 import MainLayout from "./components/MainLayout";
 import Underconstruction from "./components/Underconstruction";
+import GenreList from "./components/GenreList";
 
 const Router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const Router = createBrowserRouter([
       {
         path: "/news",
         element: <News />,
+      },
+      {
+        path: "/genre",
+        element: <GenreList />,
       },
     ],
   },
