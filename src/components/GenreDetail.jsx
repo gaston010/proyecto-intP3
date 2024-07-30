@@ -57,7 +57,7 @@ const GenreDetail = ({ genreId }) => {
   );
 };
 GenreDetail.propTypes = {
-  genreId: PropTypes.string,
+  genreId: PropTypes.number,
 };
 
 export default GenreDetail;
