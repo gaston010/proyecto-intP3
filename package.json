@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "start": "vite",
     "predeploy": "npm run build",
-    "deploy": "vite build && gh-pages -d dist",
+    "deploy": "gh-pages -d build",
     "install": "npm install vite --save-dev"
   },
   "dependencies": {
