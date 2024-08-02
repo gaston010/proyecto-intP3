@@ -7,6 +7,7 @@ import News from "./components/News";
 import MainLayout from "./components/MainLayout";
 import Underconstruction from "./components/Underconstruction";
 import GenreList from "./components/GenreList";
+import Sidebar from "./components/Sidebar";
 
 const Router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const Router = createBrowserRouter([
       {
         path: "/genre",
         element: <GenreList />,
-      },
+      }
     ],
   },
   {

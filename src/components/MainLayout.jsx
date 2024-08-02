@@ -1,7 +1,8 @@
-// import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import Navbar from "./Navbar.jsx";
+import React from "react";
+import { Outlet } from "react-router-dom";
 import Background from "./Background";
+import SideBar from "./Sidebar";
+import { useLocation } from "react-router-dom";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -14,16 +15,18 @@ const MainLayout = () => {
 
   return (
     <div>
-      <Navbar />
-      <main>
-        {showBackground ? (
-          <Background>
+      <div style={{ display: "flex" }}>
+        <SideBar />
+        <main style={{ flex: 1 }}>
+          {showBackground ? (
+            <Background>
+              <Outlet />
+            </Background>
+          ) : (
             <Outlet />
-          </Background>
-        ) : (
-          <Outlet />
-        )}
-      </main>
+          )}
+        </main>
+      </div>
     </div>
   );
 };
