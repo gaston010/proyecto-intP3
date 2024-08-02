@@ -18,14 +18,15 @@ export function News() {
             },
           }
         );
+        console.log(response);
         if (response.ok) {
           var data = await response.json();
-          data.forEach((item) => {
+          data.results.forEach((item) => {
             if (item.image === null) {
               item.image = "src/assets/underweb.jpeg";
             }
           });
-          setNewsData(data);
+          setNewsData(data.results);
         }
       } catch (error) {
         console.error("Error fetching artist news data:", error);
