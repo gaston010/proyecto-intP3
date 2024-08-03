@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 import Background from "./Background";
 
+
 const MainLayout = () => {
   const location = useLocation();
 
