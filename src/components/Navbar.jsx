@@ -3,6 +3,8 @@ import { useLocation, Link } from "react-router-dom";
 import { FaHome, FaUserCircle, FaKey } from "react-icons/fa";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { FcNews } from "react-icons/fc";
+import { IoIosLogIn } from "react-icons/io";
+import { FaMusic } from "react-icons/fa";
 import "../Style.css";
 
 function Navbar() {
@@ -14,49 +16,15 @@ function Navbar() {
   const isLoginPage = location.pathname === "/login";
   // const isForgotPage = location.pathname === "/forgot";
 
-  const showSideMenu = true; // Set to true or false based on your requirement
-
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div>
-      </div>
-      {showSideMenu && (
-        <div className="navbar-start">
-          {/* Navbar side items */}
-          <select>
-          <option value="someOption"><span className="icon">
-            Profile
-            <FaUserCircle />
-            </span>
-          </option>
-          <option value="otherOption"><span className="icon">
-            Logout
-            <FaKey />
-            </span>
-          </option>
-          </select>
-        </div>
-      )}
-
-      <div className="navbar-brand">
+      <div className="navbar-brand ml-5 gap-x-2" style={{ alignItems: 'center' }}>
         {/* Navbar main items */}
-        <Link to="/" className="navbar-item">
+        <Link to="/">
           <span className="icon">
-            {location.pathname === "/" ? <FcNews /> : <FaHome />}
+            <FaMusic />
           </span>
-          Home
-        </Link>
-        <Link to="/news" className="navbar-item">
-          <span className="icon">
-            {location.pathname === "/news" ? <FcNews /> : <FaRegNewspaper />}
-          </span>
-          News
-        </Link>
-        <Link to="/genre" className="navbar-item">
-          <span className="icon">
-            {location.pathname === "/genre" ? <FcNews /> : <FaRegNewspaper />}
-          </span>
-          GenreList
+          <span className="font-bold text-lg">MusicApp</span>
         </Link>
       </div>
 
@@ -68,8 +36,11 @@ function Navbar() {
                 to="/login"
                 className={`button is-primaty ${isLoginPage ? "blink" : ""}`}
               >
+                <span>
+                  Login
+                </span>
                 <span className="icon">
-                  <FaUserCircle />
+                <IoIosLogIn />
                 </span>
               </Link>
             </div>
