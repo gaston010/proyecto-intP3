@@ -1,8 +1,10 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Background from "./Background";
-import SideBar from "./Sidebar";
+// import SideBar from "./Sidebar";
 import { useLocation } from "react-router-dom";
+import SideMenu from "./SideMenu";
+import Navbar from "./Navbar";
 
 
 const MainLayout = () => {
@@ -16,18 +18,19 @@ const MainLayout = () => {
 
   return (
     <div>
-      <div style={{ display: "flex" }}>
-        <SideBar />
-        <main style={{ flex: 1 }}>
-          {showBackground ? (
-            <Background>
+      <Navbar/>
+      {/* <SideMenu/> */}
+      <div style={{ display: "flex" }}>        
+          <main style={{ flex: 1 }}>
+            {showBackground ? (
+              <Background>
+                <Outlet />
+              </Background>
+            ) : (
               <Outlet />
-            </Background>
-          ) : (
-            <Outlet />
-          )}
-        </main>
-      </div>
+            )}
+          </main>
+        </div>
     </div>
   );
 };
