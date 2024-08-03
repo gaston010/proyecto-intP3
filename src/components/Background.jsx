@@ -9,6 +9,7 @@ const Background = ({ children }) => {
     backgroundPosition: "center",
     minHeight: "93vh",
     display: "flex",
+    flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
   };
