@@ -17,7 +17,7 @@ const homeButtons = [
 ];
 
 const menus = [
-  { name: "Iniciar Sesión", path: "/login", icon: FaUserCircle },
+  { name: "Log out", path: "/", icon: FaUserCircle },
   { name: "Noticias", path: "/news", icon: FcNews },
   { name: "Géneros", path: "/genre", icon: CiBoxList },
   { name: "Canciones", path: "/songs", icon: GiLoveSong, margin: true },
