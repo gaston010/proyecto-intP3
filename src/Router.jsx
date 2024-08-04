@@ -7,8 +7,7 @@ import News from "./components/News";
 import MainLayout from "./components/MainLayout";
 import Underconstruction from "./components/Underconstruction";
 import GenreList from "./components/GenreList";
-import Sidebar from "./components/Sidebar";
-
+import SongList from "./components/SongList";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +32,10 @@ const Router = createBrowserRouter([
       {
         path: "/genre",
         element: <GenreList />,
+      },
+      {
+        path: "/songs",
+        element: <SongList />,
       }
     ],
   },

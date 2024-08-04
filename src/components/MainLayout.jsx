@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Background from "./Background";
 import SideBar from "./Sidebar";
 import { useLocation } from "react-router-dom";
+import PlaybackBar  from "./PlaybackBar";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -15,17 +16,20 @@ const MainLayout = () => {
 
   return (
     <div>
-      <div style={{ display: "flex" }}>
-        <SideBar />
-        <main style={{ flex: 1 }}>
-          {showBackground ? (
-            <Background>
+      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <div style={{ display: "flex", flex: 1 }}>
+          <SideBar />
+          <main style={{ flex: 1 }}>
+            {showBackground ? (
+              <Background>
+                <Outlet />
+              </Background>
+            ) : (
               <Outlet />
-            </Background>
-          ) : (
-            <Outlet />
-          )}
-        </main>
+            )}
+          </main>
+        </div>
+        <PlaybackBar />
       </div>
     </div>
   );

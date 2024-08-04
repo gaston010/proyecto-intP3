@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 @keyframes blink {
     0% {
         opacity: 1;
@@ -98,3 +98,60 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/* SongList.css */
+.song-grid {
+    display: flex  !important;
+    flex-wrap: wrap;
+    gap: 16px !important;
+    padding: 16px !important;
+  }
+  
+  .song-card {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid #ccc;
+    color: white;
+    border-radius: 8px;
+    background-color: #1b1b1b;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .song-background {
+    color:black;
+    font-size: 4rem;
+    position: absolute;
+    z-index: 0;
+  }
+
+  .song-title{
+    position: relative;
+    z-index: 1;
+  }
+  .song-card h2 {
+    font-size: 1rem;
+  }
+  
+  .song-card p {
+    margin: 4px 0;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+  }
+  
+  .pagination button {
+    margin: 0 8px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .pagination button:hover {
+    background-color: #0056b3;
+  }
+  
