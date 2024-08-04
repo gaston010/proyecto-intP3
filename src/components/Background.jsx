@@ -14,7 +14,7 @@ const Background = ({ children }) => {
     alignItems: "center",
   };
 
-  return <div style={backgroundStyle}>{children}</div>;
+  return <div className="w-full" style={backgroundStyle}>{children}</div>;
 };
 
 // Define PropTypes
