@@ -1,4 +1,3 @@
-// import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import LoginForm from "./components/Login";
 import Home from "./components/home/Home";
@@ -7,7 +6,8 @@ import News from "./components/News";
 import MainLayout from "./components/MainLayout";
 import Underconstruction from "./components/Underconstruction";
 import GenreList from "./components/GenreList";
-import Sidebar from "./components/Sidebar";
+// import Sidebar from "./components/Sidebar";
+import PrivateRoute from "./components/PrivateRoute"; // Asegúrate de importar PrivateRoute
 
 const Router = createBrowserRouter([
   {
@@ -28,12 +28,20 @@ const Router = createBrowserRouter([
       },
       {
         path: "/news",
-        element: <News />,
+        element: (
+          <PrivateRoute>
+            <News />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/genre",
-        element: <GenreList />,
-      }
+        element: (
+          <PrivateRoute>
+            <GenreList />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
