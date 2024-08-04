@@ -1,6 +1,6 @@
 // import React from "react";
 import PropTypes from "prop-types";
-import backgroundImage from "/src/assets/background-login.webp";
+import backgroundImage from "/src/assets/background-home.jpg";
 
 const Background = ({ children }) => {
   const backgroundStyle = {
@@ -9,6 +9,7 @@ const Background = ({ children }) => {
     backgroundPosition: "center",
     minHeight: "93vh",
     display: "flex",
+    flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
   };

@@ -1,7 +1,7 @@
 // import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import LoginForm from "./components/Login";
-import Home from "./components/Home";
+import Home from "./components/home/Home";
 import ForgotPassword from "./components/ForgotPassword";
 import News from "./components/News";
 import MainLayout from "./components/MainLayout";
