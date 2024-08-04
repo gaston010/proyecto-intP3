@@ -42,7 +42,7 @@ const LoginForm = () => {
 
         // Store the token in a cookie to future requests
         Cookies.set('authToken', token); 
-        navigate("/");  
+        navigate("/news");  
 
         // Redirect or perform other actions
         console.log('Login successful');

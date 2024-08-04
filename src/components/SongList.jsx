@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import  {GiLoveSong} from "react-icons/gi";
 
 // const SongList = ({ songIds }) => {
 const SongList = () => {
@@ -9,6 +8,7 @@ const SongList = () => {
   const [error, setError] = useState(null);
   const [next, setNext] = useState(null);
   const [previous, setPrevious] = useState(null);
+
 
   useEffect(() => {
     fetchSongs('http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1');
@@ -52,16 +52,19 @@ const SongList = () => {
 
 const SongCard = ({ song }) => {
   const { title, year, duration, song_file, view_count } = song;
+  const [showPlayButton, setShowPlayButton] = useState(true);
 
   return (
-    <div className="song-card">
-      <div className="song-background">
-       <GiLoveSong />
-      </div>
+    <div className="song-card"
+        onMouseEnter={()=>setShowPlayButton(true)}
+        >
+        {showPlayButton && (
+          <button className="play-button">
+            ▶️
+          </button>
+        )}
+        <h2 className="song-title">{title}</h2>
 
-       <div className="song-title">
-        <h2>{title}</h2>
-       </div>
       {/* <h2>{title}</h2> */}
       {/* {year && <p><strong>Año:</strong> {year}</p>}
       {duration && <p><strong>Duración:</strong> {duration} segundos</p>}

@@ -112,15 +112,11 @@
     border: 1px solid #ccc;
     color: white;
     border-radius: 8px;
-    background-color: #1b1b1b;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .song-background {
-    color:black;
-    font-size: 4rem;
-    position: absolute;
-    z-index: 0;
+    background-image: url('./assets/song.png');
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
   }
 
   .song-title{
@@ -128,11 +124,20 @@
     z-index: 1;
   }
   .song-card h2 {
-    font-size: 1rem;
+    top: 80px;
+    font-size: 12px;
   }
   
   .song-card p {
     margin: 4px 0;
+  }
+
+  .play-button{
+    align-self: center;
+    position: relative;
+    left: 60%;
+    top: 40%;
+    font-size: 2rem;
   }
   
   .pagination {
@@ -153,5 +158,28 @@
   
   .pagination button:hover {
     background-color: #0056b3;
+  }
+  
+  .main{
+    display: flex;
+    min-width: 100%;
+    flex: 8;
+    justify-content: center;
+  }
+
+  .with-sidemenu {
+    flex: 6;
+  }
+  
+  .without-sidemenu {
+    flex: 19;
+  }
+
+  .open {
+    width: 15%;
+  }
+  
+  .closed {
+    width: 5%;
   }
   

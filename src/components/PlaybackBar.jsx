@@ -20,16 +20,15 @@ const PlaybackBar = () => {
 
   return (
     <div
-      className="fixed bottom-0 left-0 w-full bg-gray-900 text-white flex items-center justify-between p-4"
+      className="bottom-0 bg-gray-900 text-white flex items-center justify-between p-4"
       style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        position: 'fixed',
         bottom: '0',
         background: 'hsl(220deg 13.04% 9.02%)',
         boxShadow: '0px -1px 5px 0px rgba(0,0,0,0.75)',
-        width: ' -webkit-fill-available'
+        minWidth: '-webkit-fill-available'
       }}
     >
       <div
