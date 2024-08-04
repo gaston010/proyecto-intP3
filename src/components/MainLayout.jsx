@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
 import Background from './Background';
-// import SideBar from "./Sidebar";
-import { useLocation } from 'react-router-dom';
 import PlaybackBar from './PlaybackBar';
 import SideMenu from './SideMenu';
 import Navbar from './Navbar';
 
+import { Outlet, useLocation } from "react-router-dom";
+import Cookies from "js-cookie";
+
 const MainLayout = () => {
   const location = useLocation();
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(true);
+  const token = Cookies.get("authToken");
 
-  // Lista de rutas que no deberían tener fondo
-  const noBackgroundRoutes = ['/underconstruction'];
-  const noNavBarRoutes = ['/', '/login'];
+  const noBackgroundRoutes = ["/underconstruction"];
+  const noNavBarRoutes = ["/", "/login"];
 
-  // Comprueba si la ruta actual está en la lista de rutas sin fondo
   const showBackground = !noBackgroundRoutes.includes(location.pathname);
 
   const homePath = noNavBarRoutes.includes(location.pathname);
@@ -34,15 +33,12 @@ const MainLayout = () => {
       }}
     >
       <div style={{ flex: '1' }}>
-        {homePath ? (
-          <Navbar />
-        ) : (
-          <SideMenu
-            className={isSideMenuOpen ? 'open' : 'closed'}
-            toggleSideMenu={toggleSideMenu}
-            style={{ flex: '1', minHeight: '100vh', minWidth: '' }}
-          />
-        )}
+        {homePath || !token ?  (<Navbar />) : (<SideMenu
+                                            className={isSideMenuOpen ? 'open' : 'closed'}
+                                            toggleSideMenu={toggleSideMenu}
+                                            style={{ flex: '1', minHeight: '100vh', minWidth: '' }}
+                                          />)
+        }
       </div>
       <section
         className={isSideMenuOpen ? 'with-sidemenu' : 'without-sidemenu'}
@@ -50,21 +46,21 @@ const MainLayout = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center'
-        }}
-      >
-        <main className="main">
-          {showBackground ? (
-            <Background>
-              <Outlet />
-            </Background>
-          ) : (
-            <Outlet />
-          )}
-        </main>
-        <PlaybackBar />
+        }}>          
+              <main className="main" style={{ flex: 1 }}>
+                {showBackground ? (
+                  <Background>
+                    <Outlet />
+                  </Background>
+                ) : (
+                  <Outlet />
+                )}
+              </main>
+              {token ? <PlaybackBar /> : ''}
       </section>
-    </div>
+    </div>  
   );
+
 };
 
 export default MainLayout;
