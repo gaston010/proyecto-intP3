@@ -7,10 +7,9 @@ import Cookies from "js-cookie";
 import "../Style.css";
 
 const LoginForm = () => {
-  // State to manage form inputs
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate(); // Hook to programmatically navigate
 
   // Handler for form submission
@@ -24,7 +23,6 @@ const LoginForm = () => {
     };
 
     try {
-      // Make API request (replace with your actual API endpoint)
       const response = await fetch(
         "https://sandbox.academiadevelopers.com/api-auth/",
         {
@@ -41,17 +39,18 @@ const LoginForm = () => {
         const token = data.token;
 
         // Store the token in a cookie to future requests
-        Cookies.set('authToken', token); 
-        navigate("/news");  
+        Cookies.set("authToken", token);
+        navigate("/news");
 
         // Redirect or perform other actions
-        console.log('Login successful');
+        console.log("Login successful");
+      } else {
+        const errorData = await response.json();
+        setError(errorData.detail || "Error al iniciar sesión");
       }
-
     } catch (err) {
       console.log("An error occurred:", err);
-      setError(err);
-      // Show error message to user
+      setError("Error de conexión. Inténtalo de nuevo más tarde.");
     }
   };
 
