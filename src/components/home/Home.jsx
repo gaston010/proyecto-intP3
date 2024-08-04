@@ -5,27 +5,15 @@ import { IoGitMerge } from "react-icons/io5";
 //Crear un Hook para generar dos listas de objetos 
 //con src y delay aleatorios.
 
-// const sourceList = [
-//   {src: "/src/assets/bass.gif", delay: 2000},
-//   {src: "/src/assets/speaker.gif", delay: 3000},
-//   {src: "/src/assets/piano.gif", delay: 500},
-//   {src: "/src/assets/drums.gif", delay: 1000},
-//   {src: "/src/assets/eguitar.gif", delay: 4000},
-//   {src: "/src/assets/saxo.gif", delay: 3500},
-//   {src: "/src/assets/chelo.gif", delay: 1000},
-//   {src: "/src/assets/guitar.gif", delay: 2000}
-// ];
-
 const sourceList = [
-  {src: "/src/assets/bass.gif", delay: 5000},
-  {src: "/src/assets/speaker.gif", delay: 1000},
-  {src: "/src/assets/piano.gif", delay: 7000},
-  {src: "/src/assets/drums.gif", delay: 3000},
-
+  {src: "/src/assets/bass.gif", delay: 2000},
+  {src: "/src/assets/speaker.gif", delay: 0},
+  {src: "/src/assets/piano.gif", delay: 2000},
+  {src: "/src/assets/drums.gif", delay: 0},
   {src: "/src/assets/eguitar.gif", delay: 0},
-  {src: "/src/assets/saxo.gif", delay: 6000},
-  {src: "/src/assets/chelo.gif", delay: 2000},
-  {src: "/src/assets/guitar.gif", delay: 4000}
+  {src: "/src/assets/saxo.gif", delay: 2000},
+  {src: "/src/assets/chelo.gif", delay: 0},
+  {src: "/src/assets/guitar.gif", delay: 2000}
 ];
 
 //Custom Hook to shuffle the content to be placed on each Bubble component
@@ -34,20 +22,18 @@ const useRandomBubbleData = () => {
   const [content, setContent] = useState(sourceList);
   
   const shuffleContent = () => {
-    let ran1, ran2;
-    const source  = content.map((item) => item.src);
-    const time    = content.map((item) => item.delay);
+    let ran;
+    const sources  = content.map((item) => item.src);
+    const times  = content.map((item) => item.delay);
     let shuffled = [];
     do{
-      ran1 = Math.floor(Math.random() * source.length);
-      ran2 = Math.floor(Math.random() * time.length);
+      ran = Math.floor(Math.random() * sources.length);
       shuffled.push({
-        src: source[ran1],
-        delay: time[ran2]
+        src: sources[ran],
+        delay: times.shift()
       });
-      source.splice(ran1, 1);
-      time.splice(ran2, 1);
-    }while(source.length);
+      sources.splice(ran, 1);
+    }while(sources.length);
     setContent(shuffled);
   }
   return [content, shuffleContent];
@@ -68,30 +54,22 @@ const useRandomBubbleData = () => {
 //   {src: "/src/assets/guitar.gif", delay: 2000}
 // ];
 
+
 function Home() {
 
-  // const [content, shuffleContent] = useRandomBubbleData();
+  const [content, shuffleContent] = useRandomBubbleData();
   
-  // const imagesTop = content.slice(4,8);
-  // const imagesBottom = content.slice(0,4);
+  const imagesTop = content.slice(4,8);
+  const imagesBottom = content.slice(0,4);
 
-  const imagesTop = sourceList.slice(4,8);
-  const imagesBottom = sourceList.slice(0,4);
-
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//           shuffleContent()
-//         }, 2000);
-//     return () => {
-//         clearInterval(interval);
-//     };
-//     // const interval = setInterval(() => {
-//     //         toggleTransition()
-//     //     }, 2000);
-//     //     return () => {
-//     //         clearInterval(interval);
-//     // };
-// }, [imagesTop]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+          shuffleContent()
+        }, 4000);
+    return () => {
+        clearInterval(interval);
+    };
+}, [imagesTop]);
 
   return (
     <div className="flex flex-auto flex-col space-y-5">
@@ -101,10 +79,10 @@ function Home() {
         ))}
       </div>
       <div className="flex flex-col items-center gap-4">
-        <span className="text-6xl">
+        <span className="text-6xl text-shadow text-shadow-fuchsia-500 text-shadow-blur-5 text-shadow-x-3 text-shadow-y-1">
           Welcome to the MusicApp!
         </span>
-        <span className="text-4xl">
+        <span className="text-4xl text-shadow text-shadow-fuchsia-500 text-shadow-blur-5 text-shadow-x-3 text-shadow-y-1">
           Please login
         </span>
       </div>

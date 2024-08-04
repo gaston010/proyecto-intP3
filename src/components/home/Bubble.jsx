@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
 //Custom hook for changing transition effect
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
 const transitionClasses = [
     "scale-50 opacity-0", 
     "scale-110 opacity-100"
@@ -9,35 +10,30 @@ const transitionClasses = [
 
 const Bubble = ({data}) => {
     
-    const [transition, setTransition] = useState(0);
-    
-    function toggleTransition() {
-        setTransition(transition === 0 ? 1 : 0);
-    };
+    const [transition, setTransition] = useState(0); //para actualizar la transisión de la animación del componente
+    const [initial, setInitial] = useState(true); 
 
-    //using a hook to update transitions effects
+    //using a react hook to update transitions effects
 
-    useEffect(() => {
+    useEffect(() => { //Se ejecuta una única vez al primer renderizado
         let interval;
-        setTimeout(() => {
-            interval = setInterval(() => {
-                toggleTransition()
-            }, 2000);
-        }, data.delay);
+
+        if(initial){
+            setTimeout(() => {
+                interval = setInterval(() => setTransition(transition === 0 ? 1 : 0), 2000);
+            }, data.delay);
+            setInitial(false);
+        } else {
+            interval = setInterval(() => setTransition(transition === 0 ? 1 : 0), 2000);
+        }
         return () => {
-            clearInterval(interval);
+            clearInterval(interval) ;
         };
-        // const interval = setInterval(() => {
-        //         toggleTransition()
-        //     }, 2000);
-        //     return () => {
-        //         clearInterval(interval);
-        // };
     }, [transition]);
 
   return (
     <div className={
-        `rounded-full size-48 transition ease-in-out
+        `rounded-full size-48 shadow-lg shadow-fuchsia-500 transition ease-in-out
          ${transitionClasses[transition]}           
         duration-500 bg-cover bg-center`}
             style={{backgroundImage: `url(${data.src})`}}>
