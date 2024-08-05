@@ -36,7 +36,7 @@ function Navbar() {
             <div className="buttons">
               {token ? (
                 <button onClick={handleLogout} className="button is-primary">
-                  <span>Logout</span>
+                  <span>Login</span>
                   <span className="icon">
                     <IoIosLogIn />
                   </span>

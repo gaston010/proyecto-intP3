@@ -1,7 +1,7 @@
 // import React from "react";
 import PropTypes from "prop-types";
-import "bulma/css/bulma.min.css";
-import "../Style.css";
+// import "bulma/css/bulma.min.css";
+// import "../Style.css";
 
 const GenreCard = ({ genre, onClick }) => {
   return (
@@ -10,12 +10,12 @@ const GenreCard = ({ genre, onClick }) => {
       {/* Ajustar el tamaño de la columna */}
       <div className="card" onClick={onClick}>
         <div className="card-content card-content-genre">
-          <p className="title is-4 has-text-centered">
+          <p className="title is-4 has-text-centered text-lg">
             {" "}
             {/* Ajustar el tamaño de la fuente */}
             {genre.name}
           </p>
-          <p className="subtitle is-5 has-text-centered">
+          <p className="subtitle is-5 has-text-centered text-sm">
             {" "}
             {/* Ajustar el tamaño de la fuente */}
             {genre.description}
