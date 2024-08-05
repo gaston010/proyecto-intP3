@@ -7,11 +7,11 @@ const Background = ({ children }) => {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    minHeight: "93vh",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
+    width: '-webkit-fill-available'
   };
 
   return <div style={backgroundStyle}>{children}</div>;
