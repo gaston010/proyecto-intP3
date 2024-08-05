@@ -40,9 +40,25 @@ const SongList = () => {
     return <p>Error loading songs: {error}</p>;
   }
 
+  const handleNext = () => {
+    fetchSongs(next);
+  }
+  const handlePrevious = () => {
+    if (!previous) {
+      fetchSongs('http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1');
+    } else {
+      fetchSongs(previous);
+    }
+  }
+
   return (
     <div>
+        <div className="song-action-buttons">
+          <button onClick={handlePrevious}>⏮️</button>
+          <button onClick={handleNext}>⏭️</button>
+        </div>
       <div className="song-grid">
+        
         {songs.map((song) => (
           <SongCard key={song.id} song={song} />
         ))}
@@ -63,27 +79,33 @@ const SongCard = ({ song }) => {
   };
 
   return (
-    <div
-      className="song-card"
-      onMouseEnter={() => setShowPlayButton(true)}
-      onMouseLeave={() => setShowPlayButton(false)}
-    >
-      {showPlayButton && (
-        <button className="play-button" onClick={handlePlayClick}>
-          ▶️
-        </button>
-      )}
-      <h2 className="song-title">{title}</h2>
-
-      {/* <h2>{title}</h2> */}
-      {/* {year && <p><strong>Año:</strong> {year}</p>}
-      {duration && <p><strong>Duración:</strong> {duration} segundos</p>}
-      {song_file && (
-        <p>
-          <strong>Archivo:</strong> <a href={song_file} target="_blank" rel="noopener noreferrer">Escuchar</a>
-        </p>
-      )}
-      <p><strong>Vistas:</strong> {view_count}</p> */}
+    <div style={{display: 'flex', gap: '10px'}}>
+      <div
+        className="song-card"
+        onMouseEnter={() => setShowPlayButton(true)}
+        onMouseLeave={() => setShowPlayButton(false)}
+      >
+        {showPlayButton && (
+          <button className="play-button" onClick={handlePlayClick}>
+            ▶️
+          </button>
+        )}
+        {/* <h2>{title}</h2> */}
+        {/* {year && <p><strong>Año:</strong> {year}</p>}
+        {duration && <p><strong>Duración:</strong> {duration} segundos</p>}
+        {song_file && (
+          <p>
+            <strong>Archivo:</strong> <a href={song_file} target="_blank" rel="noopener noreferrer">Escuchar</a>
+          </p>
+        )}
+        <p><strong>Vistas:</strong> {view_count}</p> */}
+      </div>
+      <div>
+        <h2>{title}</h2>
+        {year && <p><strong>Año:</strong> {year}</p>}
+        {duration && <p><strong>Duración:</strong> {duration} segundos</p>}
+        <p><strong>Vistas:</strong> {view_count}</p>
+      </div>
     </div>
   );
 };
