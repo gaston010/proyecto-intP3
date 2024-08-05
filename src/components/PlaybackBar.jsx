@@ -1,10 +1,52 @@
 // PlaybackBar.jsx
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
+import { MediaContext } from '../context/MediaContext';
 
 const PlaybackBar = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(50);
   const [progress, setProgress] = useState(0);
+  const { mediaFile, title, duration } = useContext(MediaContext);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume / 100;
+    }
+  }, [volume]);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    if (mediaFile && audioRef.current) {
+      audioRef.current.src = mediaFile;
+      audioRef.current.load();
+      if (isPlaying) {
+        audioRef.current.play();
+      }
+    }
+  }, [mediaFile]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      const updateProgress = () => {
+        setProgress((audio.currentTime / audio.duration) * 100);
+      };
+      audio.addEventListener('timeupdate', updateProgress);
+      return () => {
+        audio.removeEventListener('timeupdate', updateProgress);
+      };
+    }
+  }, []);
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
@@ -16,6 +58,16 @@ const PlaybackBar = () => {
 
   const handleProgressChange = (e) => {
     setProgress(e.target.value);
+    if (audioRef.current) {
+      audioRef.current.currentTime =
+        (audioRef.current.duration * e.target.value) / 100;
+    }
+  };
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
   return (
@@ -24,13 +76,15 @@ const PlaybackBar = () => {
       style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         bottom: '0',
         background: 'hsl(220deg 13.04% 9.02%)',
         boxShadow: '0px -1px 5px 0px rgba(0,0,0,0.75)',
         minWidth: '-webkit-fill-available'
       }}
     >
+      <h1>{title}</h1>
+      <audio ref={audioRef} />
       <div
         className="flex flex-direction-column justify-items-center"
         style={{
@@ -47,23 +101,25 @@ const PlaybackBar = () => {
           <button onClick={() => console.log('Next')}>⏭️</button>
         </div>
         <div className="flex-1 mx-4">
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={progress}
-            onChange={handleProgressChange}
-            className="w-full"
-          />
+          <div className="flex justify-between">
+            <span>
+              {formatTime(
+                (audioRef.current && audioRef.current.currentTime) || 0
+              )}
+            </span>
+            <input
+              type="range"
+              min="0"
+              max={duration}
+              value={progress}
+              onChange={handleProgressChange}
+              style={{ width: '30rem' }}
+            />
+            <span>{formatTime(duration)}</span>
+          </div>
         </div>
       </div>
-      <div
-        className="flex items-center space-x-2"
-        style={{
-          position: 'absolute',
-          right: '0'
-        }}
-      >
+      <div className="flex items-center space-x-2">
         <span>🔊</span>
         <input
           type="range"

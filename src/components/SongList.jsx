@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
+
+import { MediaContext } from '../context/MediaContext';
 
 // const SongList = ({ songIds }) => {
 const SongList = () => {
@@ -9,11 +11,11 @@ const SongList = () => {
   const [next, setNext] = useState(null);
   const [previous, setPrevious] = useState(null);
 
-
   useEffect(() => {
-    fetchSongs('http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1');
+    fetchSongs(
+      'http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1'
+    );
   }, []);
-
 
   const fetchSongs = async (url) => {
     try {
@@ -25,7 +27,7 @@ const SongList = () => {
     } catch (error) {
       setError(error);
       console.error('Error fetching data:', error);
-    } finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -39,9 +41,8 @@ const SongList = () => {
   }
 
   return (
-    <div >
+    <div>
       <div className="song-grid">
-
         {songs.map((song) => (
           <SongCard key={song.id} song={song} />
         ))}
@@ -52,18 +53,27 @@ const SongList = () => {
 
 const SongCard = ({ song }) => {
   const { title, year, duration, song_file, view_count } = song;
-  const [showPlayButton, setShowPlayButton] = useState(true);
+  const [showPlayButton, setShowPlayButton] = useState(false);
+  const { setMediaFile, setTitle, setDuration } = useContext(MediaContext);
+
+  const handlePlayClick = () => {
+    setMediaFile(song_file);
+    setTitle(title);
+    setDuration(duration);
+  };
 
   return (
-    <div className="song-card"
-        onMouseEnter={()=>setShowPlayButton(true)}
-        >
-        {showPlayButton && (
-          <button className="play-button">
-            ▶️
-          </button>
-        )}
-        <h2 className="song-title">{title}</h2>
+    <div
+      className="song-card"
+      onMouseEnter={() => setShowPlayButton(true)}
+      onMouseLeave={() => setShowPlayButton(false)}
+    >
+      {showPlayButton && (
+        <button className="play-button" onClick={handlePlayClick}>
+          ▶️
+        </button>
+      )}
+      <h2 className="song-title">{title}</h2>
 
       {/* <h2>{title}</h2> */}
       {/* {year && <p><strong>Año:</strong> {year}</p>}
@@ -91,8 +101,8 @@ SongCard.propTypes = {
     album: PropTypes.number,
     owner: PropTypes.number.isRequired,
     artists: PropTypes.array.isRequired,
-    genres: PropTypes.array.isRequired,
-  }).isRequired,
-}
+    genres: PropTypes.array.isRequired
+  }).isRequired
+};
 
 export default SongList;
