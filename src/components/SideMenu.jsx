@@ -7,6 +7,14 @@ import { GiLoveSong } from "react-icons/gi";
 import { FaUserCircle, FaBars } from "react-icons/fa";
 import Cookies from "js-cookie";
 
+const homeButtons = [
+  { name: "Iniciar Sesión", path: "/login", icon: FaUserCircle },
+  { name: "Noticias", path: "/news", icon: FcNews },
+  { name: "Géneros", path: "/genre", icon: CiBoxList },
+  { name: "Canciones", path: "/songs", icon: GiLoveSong, margin: true },
+  { name: "Setting", path: "/", icon: RiSettings4Line }
+];
+
 const menus = [
   { name: "Noticias", path: "/news", icon: FcNews },
   { name: "Géneros", path: "/genre", icon: CiBoxList },
@@ -14,7 +22,8 @@ const menus = [
   { name: "Setting", path: "/", icon: RiSettings4Line },
 ];
 
-const SideMenu = () => {
+const SideMenu = ({ toggleSideMenu, className }) => {
+  
   const [open, setOpen] = useState(true);
   const token = Cookies.get("authToken");
 
@@ -31,14 +40,14 @@ const SideMenu = () => {
     <section className="flex gap-6">
       <div
         className={`bg-[#0e0e0e] min-h-screen absolute ${
-          open ? "w-72" : "w-16"
+          className
         } duration-500 text-gray-100 px-4`}
       >
         <div className="justify-end py-3 flex">
           <FaBars
             size={26}
             className="cursor-pointer"
-            onClick={() => setOpen(!open)}
+            onClick={() => {setOpen(!open), toggleSideMenu()}}
           />
         </div>
         <div className="mt-4 flex flex-col gap-4 relative">
