@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import GenreCard from "./GenreCard";
 import GenreDetail from "./GenreDetail";
+import AddGenreForm from "./AddGenreForm";
 import "bulma/css/bulma.min.css";
 
-const GenresList = () => {
+const GenreList = () => {
   const [genres, setGenres] = useState([]);
   const [selectedGenreId, setSelectedGenreId] = useState(null);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -14,7 +16,6 @@ const GenresList = () => {
           "https://sandbox.academiadevelopers.com/harmonyhub/genres/"
         );
         const data = await response.json();
-        // Acceder a la propiedad results
         if (data && Array.isArray(data.results)) {
           setGenres(data.results);
         } else {
@@ -32,13 +33,16 @@ const GenresList = () => {
     setSelectedGenreId(id);
   };
 
+  const addGenreToList = (newGenre) => {
+    setGenres((prevGenres) => [...prevGenres, newGenre]);
+    setShowForm(false);
+  };
+
   return (
     <div className="container">
       <h1 className="title">Music Genres</h1>
       <div className="columns">
         <div className="column is-two-thirds">
-          {" "}
-          {/* Ajustar el tamaño de la columna */}
           <div className="columns is-multiline">
             {genres.map((genre) => (
               <GenreCard
@@ -50,14 +54,21 @@ const GenresList = () => {
           </div>
         </div>
         <div className="column is-one-third">
-          {" "}
-          {/* Ajustar el tamaño de la columna */}
           <GenreDetail genreId={selectedGenreId} />
+          <button
+            className="button is-primary is-fullwidth"
+            onClick={() => setShowForm(!showForm)}
+          >
+            <span className="icon">
+              <i className="fas fa-plus"></i>
+            </span>
+            <span>Add New Genre</span>
+          </button>
+          {showForm && <AddGenreForm addGenreToList={addGenreToList} />}
         </div>
       </div>
     </div>
   );
 };
 
-
-export default GenresList;
+export default GenreList;
