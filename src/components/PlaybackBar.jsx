@@ -1,6 +1,7 @@
 // PlaybackBar.jsx
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { MediaContext } from '../context/MediaContext';
+import Cookies from 'js-cookie';
 
 const PlaybackBar = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -29,7 +30,8 @@ const PlaybackBar = () => {
     if (mediaFile && audioRef.current) {
       audioRef.current.src = mediaFile;
       audioRef.current.load();
-      if (isPlaying) {
+      if (!isPlaying) {
+        togglePlayPause();
         audioRef.current.play();
       }
     }
@@ -70,11 +72,13 @@ const PlaybackBar = () => {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
+  const token = Cookies.get("authToken");
+
   return (
     <div
       className="bottom-0 bg-gray-900 text-white flex items-center justify-between p-4"
       style={{
-        display: 'flex',
+        display: `${token ? 'flex':'none'}`,
         alignItems: 'center',
         justifyContent: 'space-around',
         bottom: '0',
@@ -105,7 +109,7 @@ const PlaybackBar = () => {
             <span>
               {formatTime(
                 (audioRef.current && audioRef.current.currentTime) || 0
-              )}
+              )}--  
             </span>
             <input
               type="range"
@@ -115,7 +119,7 @@ const PlaybackBar = () => {
               onChange={handleProgressChange}
               style={{ width: '30rem' }}
             />
-            <span>{formatTime(duration)}</span>
+            <span>--  {formatTime(duration)}</span>
           </div>
         </div>
       </div>
