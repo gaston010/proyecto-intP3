@@ -1,0 +1,13 @@
+.card-content-genre {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title.is-5,
+.subtitle.is-6 {
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
