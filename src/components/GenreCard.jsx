@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import "bulma/css/bulma.min.css";
-import "../Style.css";
+// import "bulma/css/bulma.min.css";
+// import "../Style.css";
 
 const GenreCard = ({ genre, onClick, onEdit }) => {
   return (

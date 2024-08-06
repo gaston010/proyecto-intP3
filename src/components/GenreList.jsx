@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import GenreCard from "./GenreCard";
 import GenreDetail from "./GenreDetail";
+
 import AddGenreForm from "./AddGenreForm";
 import UpdateGenreForm from "./UpdateGenreForm";
 import "bulma/css/bulma.min.css";
+
 
 const GenreList = () => {
   const [genres, setGenres] = useState([]);
@@ -54,10 +56,12 @@ const GenreList = () => {
   };
 
   return (
-    <div className="container">
-      <h1 className="title">Music Genres</h1>
-      <div className="columns">
-        <div className="column is-two-thirds">
+    <div className="flex flex-col content-center">
+      <h1 className="flex title text-center">Music Genres</h1>
+      <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4 col-span-2 h-screen overflow-y-auto overflow-x-auto">
+          {" "}
+          {/* Ajustar el tamaño de la columna */}
           <div className="columns is-multiline">
             {genres.map((genre) => (
               <GenreCard
@@ -69,7 +73,9 @@ const GenreList = () => {
             ))}
           </div>
         </div>
-        <div className="column is-one-third">
+        <div className="grid grid-cols-1 gap-4 col-span-1 h-screen overflow-y-auto overflow-x-auto">
+          {" "}
+          {/* Ajustar el tamaño de la columna */}
           <GenreDetail genreId={selectedGenreId} />
           <button
             className="button is-primary is-fullwidth"

@@ -37,7 +37,8 @@ export function News() {
   }, []);
 
   return (
-    <div className="flex">
+    <div className="flex flex-col">
+     <h1 className="title text-center">News</h1>
       <div className="flex">
         <div className="grid justify-center">
           <Carousel data={newsData}></Carousel>

@@ -39,22 +39,27 @@ const SideMenu = ({ toggleSideMenu, className }) => {
   return (
     <section className="flex gap-6">
       <div
-        className={`bg-[#0e0e0e] min-h-screen absolute ${
-          className
+        className={`bg-[#0e0e0e] min-h-screen fixed z-10 ${
+          open ? "w-72" : "w-16"
         } duration-500 text-gray-100 px-4`}
-      >
-        <div className="justify-end py-3 flex">
+      > 
+      <div className="flex justify-between">
+      <span className={`content-center justify-start font-bold text-lg 
+        whitespace-pre duration-200 ${
+        !open && "opacity-0 translate-x-10 overflow-hidden"}`}>MusicApp</span>
+      <span className="justify-end py-3 flex">
           <FaBars
             size={26}
             className="cursor-pointer"
             onClick={() => {setOpen(!open), toggleSideMenu()}}
           />
-        </div>
+        </span>
+      </div> 
         <div className="mt-4 flex flex-col gap-4 relative">
-          {menus.map((menu, i) => (
+          {menus.map((menu, index) => (
             <Link
               to={menu.path}
-              key={i}
+              key={index}
               className={` ${
                 menu.margin && "mt-5"
               } group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
@@ -62,7 +67,7 @@ const SideMenu = ({ toggleSideMenu, className }) => {
               <div>{React.createElement(menu.icon, { size: "20" })}</div>
               <h2
                 style={{
-                  transitionDelay: `${i + 3}00ms`,
+                  transitionDelay: `${index + 3}00ms`,
                 }}
                 className={`whitespace-pre duration-200 ${
                   !open && "opacity-0 translate-x-10 overflow-hidden"
