@@ -12,7 +12,7 @@ const homeButtons = [
   { name: "Noticias", path: "/news", icon: FcNews },
   { name: "Géneros", path: "/genre", icon: CiBoxList },
   { name: "Canciones", path: "/songs", icon: GiLoveSong, margin: true },
-  { name: "Setting", path: "/", icon: RiSettings4Line }
+  { name: "Setting", path: "/", icon: RiSettings4Line },
 ];
 
 const menus = [
@@ -23,7 +23,6 @@ const menus = [
 ];
 
 const SideMenu = ({ toggleSideMenu, className }) => {
-  
   const [open, setOpen] = useState(true);
   const token = Cookies.get("authToken");
 
@@ -39,15 +38,15 @@ const SideMenu = ({ toggleSideMenu, className }) => {
   return (
     <section className="flex gap-6">
       <div
-        className={`bg-[#0e0e0e] min-h-screen absolute ${
-          className
-        } duration-500 text-gray-100 px-4`}
+        className={`bg-[#0e0e0e] min-h-screen fixed ${className} duration-500 text-gray-100 px-4`}
       >
         <div className="justify-end py-3 flex">
           <FaBars
             size={26}
             className="cursor-pointer"
-            onClick={() => {setOpen(!open), toggleSideMenu()}}
+            onClick={() => {
+              setOpen(!open), toggleSideMenu();
+            }}
           />
         </div>
         <div className="mt-4 flex flex-col gap-4 relative">
