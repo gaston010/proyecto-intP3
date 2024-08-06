@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 @keyframes blink {
     0% {
         opacity: 1;
@@ -98,3 +98,85 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/* SongList.css */
+
+.song-action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 2rem;
+}
+.song-grid {
+  display: flex;
+  height: 55vh;
+  width: 70vw;
+  gap: 16px;
+  padding: 16px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  }
+  
+  .song-card {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid #ccc;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-image: url('./assets/song.png');
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+  }
+
+  
+  .play-button{
+    align-self: center;
+    position: relative;
+    left: 60%;
+    top: 40%;
+    font-size: 2rem;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+  }
+  
+  .pagination button {
+    margin: 0 8px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .pagination button:hover {
+    background-color: #0056b3;
+  }
+  
+  .main{
+    display: flex;
+    min-width: 100%;
+    flex: 8;
+    justify-content: center;
+  }
+
+  .with-sidemenu {
+    flex: 6;
+  }
+  
+  .without-sidemenu {
+    flex: 19;
+  }
+
+  .open {
+    width: 15%;
+  }
+  
+  .closed {
+    width: 5%;
+  }
+  

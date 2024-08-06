@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-import Carousel from "./Carousel";
+import { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+import Carousel from './Carousel';
 
 export function News() {
   const [newsData, setNewsData] = useState([]);
@@ -8,14 +8,14 @@ export function News() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let cookie = Cookies.get("authToken");
+        let cookie = Cookies.get('authToken');
         const response = await fetch(
-          "https://sandbox.academiadevelopers.com/harmonyhub/artists/?format=json",
+          'https://sandbox.academiadevelopers.com/harmonyhub/artists/?format=json',
           {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${cookie}`,
-            },
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${cookie}`
+            }
           }
         );
         console.log(response);
@@ -23,13 +23,13 @@ export function News() {
           var data = await response.json();
           data.results.forEach((item) => {
             if (item.image === null) {
-              item.image = "src/assets/underweb.jpeg";
+              item.image = 'src/assets/underweb.jpeg';
             }
           });
           setNewsData(data.results);
         }
       } catch (error) {
-        console.error("Error fetching artist news data:", error);
+        console.error('Error fetching artist news data:', error);
       }
     };
 

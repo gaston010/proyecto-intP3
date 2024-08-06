@@ -7,6 +7,14 @@ import { GiLoveSong } from "react-icons/gi";
 import { FaUserCircle, FaBars } from "react-icons/fa";
 import Cookies from "js-cookie";
 
+const homeButtons = [
+  { name: "Iniciar Sesión", path: "/login", icon: FaUserCircle },
+  { name: "Noticias", path: "/news", icon: FcNews },
+  { name: "Géneros", path: "/genre", icon: CiBoxList },
+  { name: "Canciones", path: "/songs", icon: GiLoveSong, margin: true },
+  { name: "Setting", path: "/", icon: RiSettings4Line }
+];
+
 const menus = [
   { name: "Noticias", path: "/news", icon: FcNews },
   { name: "Géneros", path: "/genre", icon: CiBoxList },
@@ -14,7 +22,8 @@ const menus = [
   { name: "Setting", path: "/", icon: RiSettings4Line },
 ];
 
-const SideMenu = () => {
+const SideMenu = ({ toggleSideMenu, className }) => {
+  
   const [open, setOpen] = useState(true);
   const token = Cookies.get("authToken");
 
@@ -42,7 +51,7 @@ const SideMenu = () => {
           <FaBars
             size={26}
             className="cursor-pointer"
-            onClick={() => setOpen(!open)}
+            onClick={() => {setOpen(!open), toggleSideMenu()}}
           />
         </span>
       </div> 
