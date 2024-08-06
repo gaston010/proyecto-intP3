@@ -1,4 +1,4 @@
-import useSongs from "../hooks/useSongds";
+import useSongs from "../hooks/useSongs";
 import SongCard from "./SongCard"; // Asegúrate de que la ruta es correcta
 import "bulma/css/bulma.min.css";
 import "./SongList.css"; // Asegúrate de que la ruta es correcta
