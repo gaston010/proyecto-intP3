@@ -1,0 +1,52 @@
+/* GenreList.css */
+.container {
+    padding: 20px;
+}
+
+.title {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    padding: 10px;
+}
+
+.column.is-two-thirds {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+}
+
+.column.is-one-third {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+}
+
+.button.is-primary {
+    margin-top: 20px;
+}
+
+.button.is-fullwidth {
+    width: 100%;
+}
+
+.icon {
+    margin-right: 8px;
+}
+
+.fas.fa-plus {
+    font-size: 16px;
+}
+
+.genre-card {
+    margin-bottom: 20px;
+}
+
+.genre-detail {
+    margin-bottom: 20px;
+}
