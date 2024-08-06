@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import GenreCard from "./GenreCard";
 import GenreDetail from "./GenreDetail";
-// import "bulma/css/bulma.min.css";
+
+import AddGenreForm from "./AddGenreForm";
+import UpdateGenreForm from "./UpdateGenreForm";
+import "bulma/css/bulma.min.css";
+
 
 const GenreList = () => {
   const [genres, setGenres] = useState([]);
   const [selectedGenreId, setSelectedGenreId] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [editingGenre, setEditingGenre] = useState(null);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -32,9 +37,22 @@ const GenreList = () => {
     setSelectedGenreId(id);
   };
 
+  const handleEditGenre = (genre) => {
+    setEditingGenre(genre);
+  };
+
   const addGenreToList = (newGenre) => {
     setGenres((prevGenres) => [...prevGenres, newGenre]);
     setShowForm(false);
+  };
+
+  const handleGenreUpdated = (updatedGenre) => {
+    setGenres((prevGenres) =>
+      prevGenres.map((genre) =>
+        genre.id === updatedGenre.id ? updatedGenre : genre
+      )
+    );
+    setEditingGenre(null); // Reset the editing genre state
   };
 
   return (
@@ -50,6 +68,7 @@ const GenreList = () => {
                 key={genre.id}
                 genre={genre}
                 onClick={() => handleGenreClick(genre.id)}
+                onEdit={handleEditGenre}
               />
             ))}
           </div>
@@ -68,6 +87,12 @@ const GenreList = () => {
             <span>Add New Genre</span>
           </button>
           {showForm && <AddGenreForm addGenreToList={addGenreToList} />}
+          {editingGenre && (
+            <UpdateGenreForm
+              genre={editingGenre}
+              onGenreUpdated={handleGenreUpdated}
+            />
+          )}
         </div>
       </div>
     </div>
