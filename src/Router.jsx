@@ -1,14 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import LoginForm from "./components/Login";
+import LoginForm from "./components/LoginForm/LoginForm"
 import Home from "./components/home/Home";
-import ForgotPassword from "./components/ForgotPassword";
-import News from "./components/News";
-import MainLayout from "./components/MainLayout";
-import Underconstruction from "./components/Underconstruction";
-import GenreList from "./components/GenreList";
-import SongList from "./components/SongList";
-// import Sidebar from "./components/Sidebar";
-import PrivateRoute from "./components/PrivateRoute"; // Asegúrate de importar PrivateRoute
+import News from "./components/News/News";
+import ForgotPassword from "./components/ForgotPasswordForm/ForgotPassword"
+import MainLayout from "./components/MainLayout/MainLayout";
+import Underconstruction from "./components/Underconstruction/Underconstruction";
+import GenreList from "./components/GenreList/GenreList";
+import SongList from "./components/SongList/SongList";
+import PrivateRoute from "./components/PrivateRoute/"
 
 const Router = createBrowserRouter([
   {
@@ -46,7 +45,7 @@ const Router = createBrowserRouter([
       {
         path: "/songs",
         element: <SongList />,
-      }
+      },
     ],
   },
   {
