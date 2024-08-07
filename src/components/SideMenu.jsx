@@ -12,7 +12,7 @@ const homeButtons = [
   { name: "Noticias", path: "/news", icon: FcNews },
   { name: "Géneros", path: "/genre", icon: CiBoxList },
   { name: "Canciones", path: "/songs", icon: GiLoveSong, margin: true },
-  { name: "Setting", path: "/", icon: RiSettings4Line }
+  { name: "Setting", path: "/", icon: RiSettings4Line },
 ];
 
 const menus = [
@@ -23,7 +23,6 @@ const menus = [
 ];
 
 const SideMenu = ({ toggleSideMenu, className }) => {
-  
   const [open, setOpen] = useState(true);
   const token = Cookies.get("authToken");
 
@@ -39,19 +38,15 @@ const SideMenu = ({ toggleSideMenu, className }) => {
   return (
     <section className="flex gap-6">
       <div
-        className={`bg-[#0e0e0e] min-h-screen fixed z-10 ${
-          open ? "w-72" : "w-16"
-        } duration-500 text-gray-100 px-4`}
-      > 
-      <div className="flex justify-between">
-      <span className={`content-center justify-start font-bold text-lg 
-        whitespace-pre duration-200 ${
-        !open && "opacity-0 translate-x-10 overflow-hidden"}`}>MusicApp</span>
-      <span className="justify-end py-3 flex">
+        className={`bg-[#0e0e0e] min-h-screen fixed ${className} duration-500 text-gray-100 px-4`}
+      >
+        <div className="justify-end py-3 flex">
           <FaBars
             size={26}
             className="cursor-pointer"
-            onClick={() => {setOpen(!open), toggleSideMenu()}}
+            onClick={() => {
+              setOpen(!open), toggleSideMenu();
+            }}
           />
         </span>
       </div> 

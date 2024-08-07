@@ -1,7 +1,7 @@
-// PlaybackBar.jsx
-import React, { useState, useContext, useEffect, useRef } from 'react';
-import { MediaContext } from '../context/MediaContext';
-import Cookies from 'js-cookie';
+import { useState, useContext, useEffect, useRef } from "react";
+import { MediaContext } from "../../context/MediaContext";
+import Cookies from "js-cookie";
+import "./PlaybackBar.css"; // Importar el archivo CSS
 
 const PlaybackBar = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -43,9 +43,9 @@ const PlaybackBar = () => {
       const updateProgress = () => {
         setProgress((audio.currentTime / audio.duration) * 100);
       };
-      audio.addEventListener('timeupdate', updateProgress);
+      audio.addEventListener("timeupdate", updateProgress);
       return () => {
-        audio.removeEventListener('timeupdate', updateProgress);
+        audio.removeEventListener("timeupdate", updateProgress);
       };
     }
   }, []);
@@ -69,47 +69,41 @@ const PlaybackBar = () => {
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
   const token = Cookies.get("authToken");
 
   return (
     <div
-      className="bottom-0 bg-gray-900 text-white flex items-center justify-between p-4"
+      className="playback-bar"
       style={{
-        display: `${token ? 'flex':'none'}`,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        bottom: '0',
-        background: 'hsl(220deg 13.04% 9.02%)',
-        boxShadow: '0px -1px 5px 0px rgba(0,0,0,0.75)',
-        minWidth: '-webkit-fill-available'
+        display: `${token ? "flex" : "none"}`,
+        alignItems: "center",
+        justifyContent: "space-around",
+        bottom: "0",
+        background: "hsl(220deg 13.04% 9.02%)",
+        boxShadow: "0px -1px 5px 0px rgba(0,0,0,0.75)",
+        minWidth: "-webkit-fill-available",
       }}
     >
       <h1>{title}</h1>
       <audio ref={audioRef} />
-      <div
-        className="flex flex-direction-column justify-items-center"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}
-      >
-        <div className="flex items-center space-x-4">
-          <button onClick={() => console.log('Previous')}>⏮️</button>
-          <button onClick={togglePlayPause} style={{ fontSize: '2rem' }}>
-            {isPlaying ? '⏸️' : '▶️'}
+      <div className="playback-controls">
+        <div className="control-buttons">
+          <button onClick={() => console.log("Previous")}>⏮️</button>
+          <button onClick={togglePlayPause} style={{ fontSize: "2rem" }}>
+            {isPlaying ? "⏸️" : "▶️"}
           </button>
-          <button onClick={() => console.log('Next')}>⏭️</button>
+          <button onClick={() => console.log("Next")}>⏭️</button>
         </div>
-        <div className="flex-1 mx-4">
-          <div className="flex justify-between">
+        <div className="progress-bar">
+          <div className="progress-times">
             <span>
               {formatTime(
                 (audioRef.current && audioRef.current.currentTime) || 0
-              )}--  
+              )}
+              --
             </span>
             <input
               type="range"
@@ -117,13 +111,13 @@ const PlaybackBar = () => {
               max={duration}
               value={progress}
               onChange={handleProgressChange}
-              style={{ width: '30rem' }}
+              style={{ width: "30rem" }}
             />
-            <span>--  {formatTime(duration)}</span>
+            <span>-- {formatTime(duration)}</span>
           </div>
         </div>
       </div>
-      <div className="flex items-center space-x-2">
+      <div className="volume-control">
         <span>🔊</span>
         <input
           type="range"

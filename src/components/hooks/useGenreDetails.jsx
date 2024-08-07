@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
-import SongList from "./SongList";
-import PropTypes from "prop-types";
-import "bulma/css/bulma.min.css";
 
-const GenreDetail = ({ genreId }) => {
+const useGenreDetails = (genreId) => {
   const [details, setDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -33,31 +30,7 @@ const GenreDetail = ({ genreId }) => {
     }
   }, [genreId]);
 
-  if (!genreId) {
-    return <p>Select a genre to see songs</p>;
-  }
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error fetching songs: {error.message}</p>;
-  }
-
-  if (!details || details.songs.length === 0) {
-    return <p>No songs available for this genre</p>;
-  }
-
-  return (
-    <div className="box">
-      <h2 className="title">Songs</h2>
-      <SongList songIds={details.songs} />
-    </div>
-  );
-};
-GenreDetail.propTypes = {
-  genreId: PropTypes.number,
+  return { details, loading, error };
 };
 
-export default GenreDetail;
+export default useGenreDetails;

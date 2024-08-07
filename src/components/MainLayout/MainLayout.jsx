@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
-import Background from './Background';
-import PlaybackBar from './PlaybackBar';
-import SideMenu from './SideMenu';
-import Navbar from './Navbar';
-
-import { Outlet, useLocation } from 'react-router-dom';
-import Cookies from 'js-cookie';
-
-import { MediaProvider } from '../context/MediaContext';
+import { useState } from "react";
+import Background from "../Background.jsx";
+import PlaybackBar from "../PlaybackBar/PlaybackBar.jsx";
+import SideMenu from "../SideMenu";
+import Navbar from "../Navbar";
+import { Outlet, useLocation } from "react-router-dom";
+import Cookies from "js-cookie";
+import { MediaProvider } from "../../context/MediaContext";
 
 const MainLayout = () => {
   const location = useLocation();
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(true);
-  const token = Cookies.get('authToken');
+  const token = Cookies.get("authToken");
 
-  const noBackgroundRoutes = ['/underconstruction'];
-  const noNavBarRoutes = ['/', '/login'];
+  const noBackgroundRoutes = ["/underconstruction"];
+  const noNavBarRoutes = ["/", "/login"];
 
   const showBackground = !noBackgroundRoutes.includes(location.pathname);
-
   const homePath = noNavBarRoutes.includes(location.pathname);
 
   const toggleSideMenu = () => {
@@ -29,29 +26,30 @@ const MainLayout = () => {
     <MediaProvider>
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'row',
-          minHeight: '100vh',
-          minWidth: '100vw'
+          display: "flex",
+          flexDirection: "row",
+          minHeight: "100vh",
+          minWidth: "100vw",
         }}
       >
-        <div style={{ flex: '1' }}>
+        <div style={{ flex: "1" }}>
           {homePath || !token ? (
             <Navbar />
           ) : (
             <SideMenu
-              className={isSideMenuOpen ? 'open' : 'closed'}
+              className={isSideMenuOpen ? "open" : "closed"}
               toggleSideMenu={toggleSideMenu}
-              style={{ flex: '1', minHeight: '100vh', minWidth: '' }}
+              style={{ flex: "1", minHeight: "100vh" }}
             />
           )}
         </div>
         <section
-          className={isSideMenuOpen ? 'with-sidemenu' : 'without-sidemenu'}
+          className={isSideMenuOpen ? "with-sidemenu" : "without-sidemenu"}
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            flex: 1,
           }}
         >
           <main className="main" style={{ flex: 1 }}>
@@ -63,7 +61,7 @@ const MainLayout = () => {
               <Outlet />
             )}
           </main>
-          {token ? <PlaybackBar /> : ''}
+          {token && <PlaybackBar />}
         </section>
       </div>
     </MediaProvider>

@@ -1,4 +1,3 @@
-// PrivateRoute.jsx
 import { Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import PropTypes from "prop-types";
@@ -15,6 +14,6 @@ const PrivateRoute = ({ children }) => {
 
 PrivateRoute.propTypes = {
   children: PropTypes.node.isRequired,
-}.isRequired;
+};
 
 export default PrivateRoute;

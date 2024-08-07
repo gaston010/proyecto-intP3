@@ -11,10 +11,12 @@ const Background = ({ children }) => {
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
-    width: '-webkit-fill-available'
+    width: "100vw", // Usa 100% del ancho de la ventana
+    height: "100vh", // Usa 100% de la altura de la ventana
+    overflow: "hidden", // Evita desbordamientos
   };
 
-  return <div className="w-full" style={backgroundStyle}>{children}</div>;
+  return <div style={backgroundStyle}>{children}</div>;
 };
 
 // Define PropTypes
