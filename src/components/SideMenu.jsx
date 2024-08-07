@@ -40,7 +40,7 @@ const SideMenu = ({ toggleSideMenu, className }) => {
     <section className="flex gap-6">
       <div
         className={`bg-[#0e0e0e] min-h-screen fixed z-10 ${
-          open ? "w-72" : "w-16"
+          open ? "w-60" : "w-16"
         } duration-500 text-gray-100 px-4`}
       > 
       <div className="flex justify-between">

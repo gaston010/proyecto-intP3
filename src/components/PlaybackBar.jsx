@@ -78,25 +78,25 @@ const PlaybackBar = () => {
     <div
       className="bottom-0 bg-gray-900 text-white flex items-center justify-between p-4"
       style={{
-        display: `${token ? 'flex':'none'}`,
+        display: `${mediaFile? 'flex':'none'}`,
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         bottom: '0',
         background: 'hsl(220deg 13.04% 9.02%)',
         boxShadow: '0px -1px 5px 0px rgba(0,0,0,0.75)',
         minWidth: '-webkit-fill-available'
       }}
     >
-      <h1>{title}</h1>
       <audio ref={audioRef} />
       <div
-        className="flex flex-direction-column justify-items-center"
+        className="flex flex-direction-column justify-items-center mx-8"
         style={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center'
+          alignItems: 'center',
         }}
       >
+        <h1>{title}</h1>
         <div className="flex items-center space-x-4">
           <button onClick={() => console.log('Previous')}>⏮️</button>
           <button onClick={togglePlayPause} style={{ fontSize: '2rem' }}>
@@ -117,13 +117,12 @@ const PlaybackBar = () => {
               max={duration}
               value={progress}
               onChange={handleProgressChange}
-              style={{ width: '30rem' }}
             />
             <span>--  {formatTime(duration)}</span>
           </div>
         </div>
       </div>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2 mx-4">
         <span>🔊</span>
         <input
           type="range"
