@@ -7,6 +7,7 @@ import MainLayout from "./components/MainLayout";
 import Underconstruction from "./components/Underconstruction";
 import GenreList from "./components/GenreList";
 import SongList from "./components/SongList";
+import AddArtistAssignment from "./components/AddArtistAssignment";
 // import Sidebar from "./components/Sidebar";
 import PrivateRoute from "./components/PrivateRoute"; // Asegúrate de importar PrivateRoute
 
@@ -46,7 +47,11 @@ const Router = createBrowserRouter([
       {
         path: "/songs",
         element: <SongList />,
-      }
+      },
+      {
+        path: "/add",
+        element: <AddArtistAssignment />,
+      },
     ],
   },
   {
