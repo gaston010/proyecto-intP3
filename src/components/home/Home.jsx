@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Bubble from "./Bubble";
 import { IoGitMerge } from "react-icons/io5";
-import useRandomBubbleData from "../hooks/useRandomBubbleData";
+import useRandomBubbleData from "../hooks/useRandomBubbleData.js";
 
 function Home() {
 

@@ -35,15 +35,15 @@ const useFetch = ({url, options = {}}) => {
     // const [isError, setIsError] = useState(false);
     // const [isLoading, setIsLoading] = useState(true);
 
-    const [state, dispatch] = useReducer(reducer, { data: null, isError: false, isLoading: true });
+    const [result, dispatch] = useReducer(reducer, { data: null, isError: false, isLoading: true });
 
     useEffect(() => {
         dispatch({ type: ACTIONS.FETCH_INIT });
 
         fetch(url, { ...options })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
                 }
                 throw Error("Error al relizar la petición");
             })
@@ -55,5 +55,7 @@ const useFetch = ({url, options = {}}) => {
             });
     }, [url]);
 
-    return state;
+    return result;
 }
+
+export default useFetch;
