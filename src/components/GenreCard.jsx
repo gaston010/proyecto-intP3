@@ -1,24 +1,35 @@
 import PropTypes from "prop-types";
-// import "bulma/css/bulma.min.css";
-// import "../Style.css";
+import { useState } from "react";
+import "tailwindcss/tailwind.css";
 
 const GenreCard = ({ genre, onClick, onEdit }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="column is-half">
-      <div className="card" onClick={onClick}>
-        <div className="card-content card-content-genre">
-          <p className="title is-4 has-text-centered">{genre.name}</p>
-          <p className="subtitle is-5 has-text-centered">{genre.description}</p>
-          <button className="button is-link is-fullwidth">View Details</button>
-          <button
-            className="button is-info is-fullwidth"
-            onClick={(e) => {
-              e.stopPropagation(); // Prevent the click event from bubbling up
-              onEdit(genre);
-            }}
-          >
-            Edit
-          </button>
+    <div
+      className={`w-full sm:w-1/2 lg:w-1/3 p-4 ${
+        isHovered ? "transform scale-105" : "transform scale-100"
+      } transition-transform duration-200`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => onClick(genre.id)}
+      style={{ cursor: "pointer" }}
+    >
+      <div className="bg-gray-800 text-white shadow-lg rounded-lg overflow-hidden">
+        <div className="p-6">
+          <h3 className="text-lg font-bold text-center">{genre.name}</h3>
+          <p className="text-gray-400 text-center">{genre.description}</p>
+          {isHovered && (
+            <button
+              className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent the click event from bubbling up
+                onEdit(genre);
+              }}
+            >
+              Edit
+            </button>
+          )}
         </div>
       </div>
     </div>
