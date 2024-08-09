@@ -9,6 +9,7 @@ import GenreList from "./components/GenreList";
 import SongList from "./components/SongList";
 import AddArtistAssignment from "./components/AddArtistAssignment";
 // import Sidebar from "./components/Sidebar";
+// import Profile from "./components/Profile";
 import PrivateRoute from "./components/PrivateRoute"; // Asegúrate de importar PrivateRoute
 
 const Router = createBrowserRouter([
@@ -52,6 +53,10 @@ const Router = createBrowserRouter([
         path: "/add",
         element: <AddArtistAssignment />,
       },
+      // {
+      //    path: "/profile",
+      //    element:  <Profile />,
+      // }
     ],
   },
   {
