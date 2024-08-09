@@ -14,8 +14,8 @@ export const MediaProvider = ({ children }) => {
         mediaFile, setMediaFile, 
         title, setTitle, 
         duration, setDuration,
-         prev, setPrev,
-          next, setNext
+        prev, setPrev,
+        next, setNext
       }
     }>
       {children}
