@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Background from './Background';
 import PlaybackBar from './PlaybackBar';
 import SideMenu from './SideMenu';
