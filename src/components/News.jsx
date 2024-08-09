@@ -104,7 +104,7 @@ const BillboardTop100 = () => {
   return (
     <div className="billboard-top-100">
       <h2 className="text-2xl font-bold mb-4">Top 100</h2>
-      <div className="flex flex-row-reverse" >
+      <div className="flex flex-row-reverse justify-center" >
 
       <div className='justify-around text-5xl'>
         <button onClick={prevPage} disabled={currentPage === 1}>
