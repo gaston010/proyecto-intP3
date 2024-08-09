@@ -8,9 +8,8 @@ const useSongsList = ({url}) => {
     const [previous, setPrevious] = useState(null);
     const [current, setCurrent] = useState(null);
 
-    const [result] = useFetch(url);
-
     useEffect(() => {
+        result = useFetch(url);
         if(!result.isError){
             setLoading(result.isLoading);
             setNext(result.data.next);
@@ -23,7 +22,7 @@ const useSongsList = ({url}) => {
             setCurrent(null);
         }
         
-    }, [result]);
+    }, [url]);
 
-    return [loading, previous, next, result];
+    return { loading, previous, next, current };
 }
