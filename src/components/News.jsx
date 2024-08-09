@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
-import Carousel from './Carousel';
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import Carousel from "./Carousel";
+// import MusicNews from './MusicNews';
+// import TagInfo from './TagInfo';
+import MusicOverview from "./MusicOverview";
 
 export function News() {
   const [newsData, setNewsData] = useState([]);
@@ -8,14 +11,14 @@ export function News() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let cookie = Cookies.get('authToken');
+        let cookie = Cookies.get("authToken");
         const response = await fetch(
-          'https://sandbox.academiadevelopers.com/harmonyhub/artists/?format=json',
+          "https://sandbox.academiadevelopers.com/harmonyhub/artists/?format=json",
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${cookie}`
-            }
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${cookie}`,
+            },
           }
         );
         console.log(response);
@@ -23,13 +26,13 @@ export function News() {
           var data = await response.json();
           data.results.forEach((item) => {
             if (item.image === null) {
-              item.image = 'src/assets/underweb.jpeg';
+              item.image = "src/assets/album.webp";
             }
           });
           setNewsData(data.results);
         }
       } catch (error) {
-        console.error('Error fetching artist news data:', error);
+        console.error("Error fetching artist news data:", error);
       }
     };
 
@@ -38,12 +41,13 @@ export function News() {
 
   return (
     <div className="flex flex-col">
-     <h1 className="title text-center">News</h1>
+      <h1 className="title text-center">News</h1>
       <div className="flex">
         <div className="grid justify-center">
           <Carousel data={newsData}></Carousel>
         </div>
       </div>
+      <MusicOverview />
     </div>
   );
 }
