@@ -81,6 +81,7 @@ const PlaybackBar = () => {
         display: `${mediaFile? 'flex':'none'}`,
         alignItems: 'center',
         justifyContent: 'space-between',
+        position: 'fixed',
         bottom: '0',
         background: 'hsl(220deg 13.04% 9.02%)',
         boxShadow: '0px -1px 5px 0px rgba(0,0,0,0.75)',
