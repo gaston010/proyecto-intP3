@@ -38,7 +38,7 @@ const News = () => {
   return (
     <div className="flex flex-col p-28 overflow-hidden
     ">
-      <h1 className="text-4xl font-bold">Top Billboard</h1>
+      <h1 className="text-4xl font-bold">Top Artist</h1>
       <div className="flex">
         <div className="grid justify-center min-h-full">
           <Carousel data={newsData}></Carousel>
@@ -103,18 +103,22 @@ const BillboardTop100 = () => {
 
   return (
     <div className="billboard-top-100">
-      <h2 className="text-2xl font-bold mb-4">Billboard Top 100</h2>
-      <div>
+      <h2 className="text-2xl font-bold mb-4">Top 100</h2>
+      <div className="flex flex-row-reverse" >
+
+      <div className='justify-around text-5xl'>
         <button onClick={prevPage} disabled={currentPage === 1}>
         ⏮️
         </button>
         <button onClick={nextPage} disabled={currentPage === Math.ceil(songs.length / songsPerPage)}>
         ⏭️
         </button>
-        </div>
+      </div>
+
       <ul>
         {currentSongs.map((song, index) => (
-          <li key={index} className="flex items-center space-x-4 m-2">
+          <li key={index} className="flex items-center space-x-4 m-2 song-list">
+
             <div className="flex items-center">
                 {song.rank < song.last_week_rank ? (
                   <FaArrowUp className="text-green-500" />
@@ -122,6 +126,7 @@ const BillboardTop100 = () => {
                   <FaArrowDown className="text-red-500" />
                 ) : <BsDashLg className="text-gray-500"/>}
             </div>
+
             <h1 className="text-gray-500 text-2xl" >{song.rank}</h1>
             <div className="w-16 h-16">
               <img src={song.image} alt={song.title} className="w-full h-full object-cover" />
@@ -136,6 +141,8 @@ const BillboardTop100 = () => {
           </li>
         ))}
       </ul>
+      </div>
+
     </div>
   );
 }
