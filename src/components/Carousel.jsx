@@ -35,11 +35,14 @@ const Carousel = ({ data }) => {
 
   return (
     <div className="slider-container">
-      <Slider {...settings} style={{ maxWidth: "900px" }}>
+      <Slider {...settings} style={{ maxWidth: "1200px" }}>
         {data.map((obj) => (
-          <div key={obj.id} className="p-4">
+          <div
+            key={obj.id}
+            className="p-2 transform transition-transform hover:scale-105"
+          >
             <div className="bg-white shadow-md rounded-lg">
-              <div className="card">
+              <div className="box">
                 <img
                   src={obj.image}
                   alt={obj.name}
