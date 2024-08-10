@@ -9,14 +9,14 @@ import Cookies from "js-cookie";
 
 const homeButtons = [
   { name: "Iniciar Sesión", path: "/login", icon: FaUserCircle },
-  { name: "Noticias", path: "/news", icon: FcNews },
+  { name: "Más escuchados", path: "/news", icon: FcNews },
   { name: "Géneros", path: "/genre", icon: CiBoxList },
   { name: "Canciones", path: "/songs", icon: GiLoveSong, margin: true },
   { name: "Setting", path: "/", icon: RiSettings4Line }
 ];
 
 const menus = [
-  { name: "Noticias", path: "/news", icon: FcNews },
+  { name: "Más escuchados", path: "/news", icon: FcNews },
   { name: "Géneros", path: "/genre", icon: CiBoxList },
   { name: "Canciones", path: "/songs", icon: GiLoveSong, margin: true },
   { name: "Setting", path: "/", icon: RiSettings4Line },
@@ -40,7 +40,7 @@ const SideMenu = ({ toggleSideMenu, className }) => {
     <section className="flex gap-6">
       <div
         className={`bg-[#0e0e0e] min-h-screen fixed z-10 ${
-          open ? "w-72" : "w-16"
+          open ? "w-60" : "w-16"
         } duration-500 text-gray-100 px-4`}
       > 
       <div className="flex justify-between">
