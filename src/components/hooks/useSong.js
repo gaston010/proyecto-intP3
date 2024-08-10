@@ -2,27 +2,21 @@
 //arreglo de canciones en el contexto SongsListContext a partir de un índice especificado
 //por parámetro
 
-import { useEffect, useState, useContext } from "react";
-import useFetch from "./useFetch";
-import { SongsListContext } from "../../context/SongsListContext";
-
-const { songs } = useContext(SongsListContext);
-
-const { setMediaFile, setTitle, setDuration, setPrev, setNext } = useContext(MediaContext);
+import { useEffect, useContext } from "react";
+// import useFetch from "./useFetch";
+import { MediaContext } from "../../context/MediaContext";
 
 const useSong = ({index}) => {
-    const [song, setSong] = useState(null);
-    const [file] = useFetch(null);
 
+    const { mediaFileList, setMediaFile, setTitle, setDuration, setPrev, setNext } = useContext(MediaContext);
+    const song = mediaFileList[index+1];
     useEffect(() => {
-        setSong(songs[index]);
-        file = useFetch(song.song_file);
-        setMediaFile(file);
+        setMediaFile(song.song_file);
         setTitle(song.title);
         setDuration(song.duration);
         setPrev(index);
         if(index+1 === data.length){
-            setNext(songs[0]);
+            setNext(0);
         }
         else {
             setNext(index+1);

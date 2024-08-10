@@ -1,28 +1,25 @@
-import { useEffect, useState } from "react";
-import useFetch from "./useFetch";
+import { useEffect, useContext } from "react";
+import { SongsListContext } from "../../context/SongsListContext";
 
-const useSongsList = ({url}) => {
+const useSongsList = ({data}) => {
 
-    const [loading, setLoading] = useState(false);
-    const [next, setNext] = useState(null);
-    const [previous, setPrevious] = useState(null);
-    const [current, setCurrent] = useState(null);
+    const { setCurrPage, setLoading, setNextPage, setPrevPage } = useContext(SongsListContext);
 
     useEffect(() => {
-        result = useFetch(url);
-        if(!result.isError){
-            setLoading(result.isLoading);
-            setNext(result.data.next);
-            setPrevious(result.data.previous);
-            setCurrent(result.data);
+        if(!data.isError){
+            setLoading(data.isLoading);
+            setNextPage(data.next);
+            setPrevPage(data.previous);
+            setCurrPage(data.data);
         } else {
             setLoading(false);
-            setNext(null);
-            setPrevious(null);
-            setCurrent(null);
+            setNextPage(null);
+            setPrevPage(null);
+            setCurrPage(null);
         }
         
-    }, [url]);
+    }, [data]);
 
-    return { loading, previous, next, current };
-}
+};
+
+export default useSongsList;

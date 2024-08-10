@@ -1,6 +1,6 @@
 // PlaybackBar.jsx
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { MediaContext } from '../context/MediaContext';
+import { MediaContext } from '../../context/MediaContext';
 import Cookies from 'js-cookie';
 import useSong from '../hooks/useSong';
 

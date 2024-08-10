@@ -2,13 +2,37 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { MediaContext } from '../context/MediaContext';
 import Cookies from 'js-cookie';
+import useSong from './hooks/useSong';
 
 const PlaybackBar = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(50);
   const [progress, setProgress] = useState(0);
-  const { mediaFile, title, duration } = useContext(MediaContext);
-  const audioRef = useRef(null);
+
+  const { 
+          mediaFile, title, duration,
+          prev, next, mediaFileList,
+          setMediaFile, setTitle, setDuration,
+          setPrev, setNext
+        } = useContext(MediaContext);
+  const audioRef = useRef(null);  
+
+  const changeSong = (index) => {
+    const song = mediaFileList[index];
+    setMediaFile(song.song_file);
+    setTitle(song.title);
+    setDuration(song.duration);
+    if(index+1 === mediaFileList.length){
+        setNext(0);
+    }
+    else if (index === 0){
+        setPrev(mediaFileList.length-1)
+    }
+    else {
+      setPrev(index-1);
+      setNext(index+1);
+    }
+  };
 
   useEffect(() => {
     if (audioRef.current) {
@@ -66,6 +90,19 @@ const PlaybackBar = () => {
     }
   };
 
+  const handleNext = (e) => {
+    // useSong(prev);
+    changeSong(next);
+    togglePlayPause();
+  };
+
+  const handlePrev = (e) => {
+    // useSong(next);
+    changeSong(prev);
+    togglePlayPause();
+  }
+
+
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -99,11 +136,11 @@ const PlaybackBar = () => {
       >
         <h1>{title}</h1>
         <div className="flex items-center space-x-4">
-          <button onClick={() => console.log('Previous')}>⏮️</button>
+          <button onClick={handlePrev}>⏮️</button>
           <button onClick={togglePlayPause} style={{ fontSize: '2rem' }}>
             {isPlaying ? '⏸️' : '▶️'}
           </button>
-          <button onClick={() => console.log('Next')}>⏭️</button>
+          <button onClick={handleNext}>⏭️</button>
         </div>
         <div className="flex-1 mx-4">
           <div className="flex justify-between">

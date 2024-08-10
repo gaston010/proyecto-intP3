@@ -1,23 +1,29 @@
-import { useSongsList } from "../hooks/useSongsList";
 import useSong from "../hooks/useSong";
 import { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { MediaContext } from '../context/MediaContext';
-import SongCardContext from './SongsList';
+import { MediaContext } from "../../context/MediaContext";
+// import { SongCardContext } from "./SongsList";
 
 const SongCard = ({ song, index }) => {
-    const { title, year, duration, view_count } = song;
+    const { title, year, duration, view_count, song_file } = song;
     const [showPlayButton, setShowPlayButton] = useState(false);
-   
-    const { isSameList, setIsSameList, setNewContext } = useContext(SongCardContext);
+    const { setMediaFile, setTitle, setDuration, setPrev, setNext, isSameList, setIsSameList, setNewContext, length} = useContext(MediaContext); 
   
     const handlePlayClick = () => {
     //Si la lista de canciones en la pantalla cambió, entonces deberá notificarse
     //al componente SongsList que debe actualizar el SongListContext.
         !isSameList ? setNewContext(true): setIsSameList(true);
-        //Llama al hook que actualiza la pista de reproducción actual:
-        useSong(index);
+        setMediaFile(song_file);
+        setTitle(title);
+        setDuration(duration);
+        setPrev(index);
+        if(index+1 === length){
+            setNext(0);
+        }
+        else {
+            setNext(index+1);
+        }
     };
   
     return (

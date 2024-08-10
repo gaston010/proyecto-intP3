@@ -1,15 +1,15 @@
-import { useSongsList } from "../hooks/useSongsList";
-
+import useSongsList from "../hooks/useSongsList";
+import useFetch from "../hooks/useFetch";
 import { useState, useEffect, useContext, createContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { MediaContext } from '../context/MediaContext';
 import { SongsListContext } from "../../context/SongsListContext";
+import { MediaContext } from "../../context/MediaContext";
 
-const SongCardContext = createContext();
+export const SongCardContext = createContext();
 
 // const SongList = ({ songIds }) => {
-const SongList = () => {
+export const SongsList = () => {
     // const [songs, setSongs] = useState([]);
     // const [loading, setLoading] = useState(true);
     // const [error, setError] = useState(null);
@@ -17,28 +17,19 @@ const SongList = () => {
     // const [previous, setPrevious] = useState(null);
 
     
-    const { setSongs, setLoading, setError, setNextset, setPrevious} = useContext(SongsListContext);
-
-    const [url, setUrl] = useState('');
-    const data = useSongsList(url);
+    const { setCurrPage, setLoading, setNextPage, setPrevPage} = useContext(SongsListContext);
+    const setMediaFileList = useContext(MediaContext);
+    const [url, setUrl] = useState('http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1');
     //Permite determinar si es necesario actualizar el contexto con una nueva lista de reproducción
     const [newContext, setNewContext] = useState(true);
     const [isSameList, setIsSameList] = useState(true);
-
-    
-
-  useEffect(() => {
-    setUrl('http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1');
-  }, []);
+    const {data, isError, isLoading,} = useFetch(url);
 
   //Sólo actualizar el contexto de lista de reproducción cuando se detecte que
   //ha cambiado la lista en pantalla y se halla reproducido una canción de dicha lista
-  useEffect(() => {
-    setSongs(data.currPage);
-    setLoading(data.loading);
-    setNext(data.nextPage);
-    setPrevious(data.prevPage);
-  }, [newContext]);
+  // useEffect(() => {
+  //   setMediaFileList(data.results);
+  // }, [newContext]);
 
 //   const fetchSongs = async (url) => {
 //     try {
@@ -55,13 +46,13 @@ const SongList = () => {
 //     }
 //   };
 
-  if (data.loading) {
-    return <p>Loading songs...</p>;
-  }
+  // if (data.loading) {
+  //   return <p>Loading songs...</p>;
+  // }
 
-  if (!data.currPage) {
-    return <p>Error loading songs: {error}</p>;
-  }
+  // if (!data.currPage) {
+  //   return <p>Error loading songs...</p>;
+  // }
 
   const handleNext = () => {
     setUrl(data.next);
@@ -69,21 +60,24 @@ const SongList = () => {
   }
   const handlePrevious = () => {
     if (!data.prevPage) {
-      setUrl(data.prevPage);
+      setUrl(data.previous);
     } else {
-      setUrl(prevPage);
+      // setUrl();
     }
     setIsSameList(false);
   }
 
   return (
+    
     <div>
+      {isLoading && (<p>Loading songs...</p>)}
+      {isError && <p>Error fetching songs...</p>}
         <div className="song-action-buttons">
           <button onClick={handlePrevious}>⏮️</button>
           <button onClick={handleNext}>⏭️</button>
         </div>
       <div className="song-grid">
-        {currPage.map((song) => (
+        {data.results.map((song) => (
             <SongCardContext.Provider value={{isSameList, setNewContext}}>
                 <SongCard key={song.id} song={song} />
             </SongCardContext.Provider>
@@ -93,4 +87,3 @@ const SongList = () => {
     </div>
   );
 };
-
