@@ -127,7 +127,7 @@ const BillboardTop100 = () => {
                 ) : <BsDashLg className="text-gray-500"/>}
             </div>
 
-            <h1 className="text-gray-500 text-2xl" >{song.rank}</h1>
+            <h1 className="text-2xl" >{song.rank}</h1>
             <div className="w-16 h-16">
               <img src={song.image} alt={song.title} className="w-full h-full object-cover" />
             </div>
@@ -136,7 +136,7 @@ const BillboardTop100 = () => {
                 <h2 className="text-lg font-bold">{song.title}</h2>  
               </FaRegCirclePlay>
               <h3 className="text-lg font-bold">{song.name}</h3>
-              <p className="text-gray-500">{song.artist}</p>
+              <p >{song.artist}</p>
             </div>
           </li>
         ))}

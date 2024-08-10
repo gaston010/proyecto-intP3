@@ -15,15 +15,15 @@
         }
     }
 
+
+
+
 .test {
-    background-color: rgb(16, 16, 16);
     border-radius: 1rem;
     margin: 1rem;
 }
 
 .test button{
-    background-color: rgb(255, 255, 255);
-    color: black;
     border: none;
     border-radius: 0.5rem;
     margin: 0.5rem;
@@ -31,7 +31,6 @@
 }
 
 .test Link{
-    color: black;
     text-decoration: none;
 }
 
@@ -64,14 +63,12 @@
     margin: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
 }
 .news-card .img{
     width: 100%;
     height: 160px;
     object-fit: cover;
     border-radius: 10px;
-    background-color: rgb(168, 176, 184);
 }
 .card-content{
     padding: 10px;
@@ -119,14 +116,26 @@
   flex-wrap: wrap;
   }
   
-  .song-card {
+  .song-card-light {
     width: 5rem;
     height: 5rem;
     border: 1px solid #ccc;
-    color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-image: url('./assets/song.png');
+    background-image: url('./assets/song-light.png');
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+  }
+
+  
+  .song-card-dark {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-image: url('./assets/song-dark.png');
     background-size: cover;
     display: flex;
     flex-direction: row;
@@ -152,7 +161,6 @@
     padding: 8px 16px;
     border: none;
     background-color: #007bff;
-    color: white;
     cursor: pointer;
     border-radius: 4px;
   }
@@ -186,4 +194,24 @@
   
   .song-list:hover{
     transform: scale(1.05);
+  }
+
+
+  .dark-theme {
+    background-color: #333 !important;
+    color: #fff !important;
+  }
+  
+  .light-theme {
+    background-color: #fff !important;
+    color: #333 !important;
+  }
+  
+  .light-theme a{
+    color:  #333;
+    cursor: pointer;
+  }
+  .dark-theme a{
+    color: #fff;
+    cursor: pointer;
   }
