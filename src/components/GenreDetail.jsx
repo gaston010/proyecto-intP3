@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import SongList from "./SongList";
+import { SongList } from "./SongList";
 import PropTypes from "prop-types";
 import "bulma/css/bulma.min.css";
 
