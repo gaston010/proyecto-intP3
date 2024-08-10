@@ -9,7 +9,7 @@ const Carousel = ({ data }) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     prevArrow: <button className="slick-prev">Previous</button>,
     nextArrow: <button className="slick-next">Next</button>,
@@ -35,28 +35,27 @@ const Carousel = ({ data }) => {
 
   return (
     <div className="slider-container">
-      <Slider {...settings} style={{ maxWidth: "1200px" }}>
+      <Slider {...settings} className="max-w-full" >
         {data.map((obj) => (
-          <div
-            key={obj.id}
-            className="p-2 transform transition-transform hover:scale-105"
-          >
-            <div className="bg-white shadow-md rounded-lg">
-              <div className="box">
+          <div key={obj.rank} className="p-4">
+            <div className="shadow-md rounded-lg">
+              <div className="card">
                 <img
                   src={obj.image}
                   alt={obj.name}
                   className="object-cover w-full h-full"
-                />
-                <div className="p-4">
-                  <h2 className="text-xl font-bold mb-2">{obj.name}</h2>
-                  <p className="text-gray-700 mb-4">{obj.bio}</p>
-                  <a
+                  style={{ height: "200px" }}
+                  />
+                <div className="p-4 flex flex-row items-center">
+                  <h1 className="text-5xl">{obj.rank}</h1>
+                  <h2 className="text-sm font-bold mb-2">{obj.name}</h2>
+                  {/* <p className="text-gray-700 mb-4">{obj.bio}</p> */}
+                  {/* <a
                     href={obj.website}
                     className="text-blue-500 hover:underline"
                   >
                     Learn More
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
@@ -70,11 +69,9 @@ const Carousel = ({ data }) => {
 Carousel.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
       name: PropTypes.string,
       image: PropTypes.string,
-      bio: PropTypes.string,
-      website: PropTypes.string,
+      rank: PropTypes.number,
     })
   ),
 };

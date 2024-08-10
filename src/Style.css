@@ -53,6 +53,7 @@
     padding: 10px;
 }
 
+
 .news-card{
     display: flex;
     flex-direction: column;
@@ -100,6 +101,9 @@
 }
 /* SongList.css */
 
+.card:hover{
+  transform: scale(1.1);
+}
 .song-action-buttons {
     display: flex;
     justify-content: flex-end;
@@ -180,3 +184,6 @@
     width: 5%;
   }
   
+  .song-list:hover{
+    transform: scale(1.05);
+  }
