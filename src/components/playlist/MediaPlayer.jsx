@@ -1,38 +1,15 @@
 // PlaybackBar.jsx
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { MediaContext } from '../context/MediaContext';
+import { MediaContext } from '../../context/MediaContext';
 import Cookies from 'js-cookie';
-import useSong from './hooks/useSong';
+import useSong from '../hooks/useSong';
 
-const PlaybackBar = () => {
+const MediaPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(50);
   const [progress, setProgress] = useState(0);
-
-  const { 
-          mediaFile, title, duration,
-          prev, next, mediaFileList,
-          setMediaFile, setTitle, setDuration,
-          setPrev, setNext
-        } = useContext(MediaContext);
-  const audioRef = useRef(null);  
-
-  const changeSong = (index) => {
-    const song = mediaFileList[index];
-    setMediaFile(song.song_file);
-    setTitle(song.title);
-    setDuration(song.duration);
-    if(index+1 === mediaFileList.length){
-        setNext(0);
-    }
-    else if (index === 0){
-        setPrev(mediaFileList.length-1)
-    }
-    else {
-      setPrev(index-1);
-      setNext(index+1);
-    }
-  };
+  const { mediaFile, title, duration, prev, next } = useContext(MediaContext);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -91,17 +68,12 @@ const PlaybackBar = () => {
   };
 
   const handleNext = (e) => {
-    // useSong(prev);
-    changeSong(next);
-    togglePlayPause();
+    useSong(prev);
   };
 
   const handlePrev = (e) => {
-    // useSong(next);
-    changeSong(prev);
-    togglePlayPause();
+    useSong(next);
   }
-
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -115,28 +87,27 @@ const PlaybackBar = () => {
     <div
       className="bottom-0 bg-gray-900 text-white flex items-center justify-between p-4"
       style={{
-        display: `${mediaFile? 'flex':'none'}`,
+        display: `${token ? 'flex':'none'}`,
         alignItems: 'center',
-        justifyContent: 'space-between',
-        position: 'fixed',
+        justifyContent: 'space-around',
         bottom: '0',
         background: 'hsl(220deg 13.04% 9.02%)',
         boxShadow: '0px -1px 5px 0px rgba(0,0,0,0.75)',
         minWidth: '-webkit-fill-available'
       }}
     >
+      <h1>{title}</h1>
       <audio ref={audioRef} />
       <div
-        className="flex flex-direction-column justify-items-center mx-8"
+        className="flex flex-direction-column justify-items-center"
         style={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'center'
         }}
       >
-        <h1>{title}</h1>
         <div className="flex items-center space-x-4">
-          <button onClick={handlePrev}>⏮️</button>
+          <button onClick={() => console.log('Previous')}>⏮️</button>
           <button onClick={togglePlayPause} style={{ fontSize: '2rem' }}>
             {isPlaying ? '⏸️' : '▶️'}
           </button>
@@ -155,12 +126,13 @@ const PlaybackBar = () => {
               max={duration}
               value={progress}
               onChange={handleProgressChange}
+              style={{ width: '30rem' }}
             />
             <span>--  {formatTime(duration)}</span>
           </div>
         </div>
       </div>
-      <div className="flex items-center space-x-2 mx-4">
+      <div className="flex items-center space-x-2">
         <span>🔊</span>
         <input
           type="range"
@@ -175,4 +147,4 @@ const PlaybackBar = () => {
   );
 };
 
-export default PlaybackBar;
+export default MediaPlayer;
