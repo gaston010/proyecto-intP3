@@ -5,13 +5,18 @@ import { LuLogIn } from "react-icons/lu";
 import { IoKey } from "react-icons/io5";
 import Cookies from "js-cookie";
 import "../Style.css";
-import { ThemeProvider } from "../context/ThemeContext";
+import React, { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
+import CircumIcon from "@klarr-agency/circum-icons-react"
+
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate(); // Hook to programmatically navigate
+  const { darkTheme} = useContext(ThemeContext);
+
 
   // Handler for form submission
   const handleSubmit = async (event) => {
@@ -56,9 +61,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="column is-one-third">
+    <div className={`column is-one-third ${darkTheme ? 'dark-theme border-dark-theme' : 'light-theme border-light-theme'}`}>
       <form onSubmit={handleSubmit}>
-        <div className="box has-background-transparent">
           <div className="field">
             <div className="control has-icons-left">
               <input
@@ -91,7 +95,7 @@ const LoginForm = () => {
           </div>
           <div className="field">
             <div className="control">
-              <label className="checkbox">
+              <label>
                 <input type="checkbox" />
                 Remember me
               </label>
@@ -99,23 +103,14 @@ const LoginForm = () => {
           </div>
           <div className="field is-grouped">
             <div className="control">
-              <button type="submit" className="button is-primary">
-                <span>Login</span>
-                <span className="icon">
-                  <LuLogIn />
-                </span>
-              </button>
+                <button style={{background: 'cyan !important'}} className={ `button is-primary ${darkTheme ? 'theme-dark-button' : 'theme-light-button'}`}>Login <CircumIcon name="login" /></button>
             </div>
             <div className="control">
-              <Link to="/forgot" className="button is-link">
-                <span>Forgot password</span>
-                <span className="icon">
-                  <IoKey />
-                </span>
+              <Link to="/forgot">
+                <button className={ `button ${darkTheme ? 'dark-theme border-dark-theme' : 'light-theme border-light-theme'}`}>Forgot password <CircumIcon name="edit" /></button>                
               </Link>
             </div>
           </div>
-        </div>
         {error && <div className="notification is-danger">{error}</div>}
       </form>
     </div>
