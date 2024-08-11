@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import { VscError } from "react-icons/vsc";
 import { IoWarningOutline } from "react-icons/io5";
 import Cookies from 'js-cookie';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Logout = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -12,6 +13,7 @@ const Logout = () => {
     const [status, setStatus] = useState('');
     const token = Cookies.get("authToken");
     const navigate = useNavigate(); // Hook to programmatically navigate
+    const { darkTheme } = useContext(ThemeContext);
 
     const logout = async (url, options = {}) => {
         try {
@@ -45,25 +47,25 @@ const Logout = () => {
 
     const handleLeave = (e) => {
         Cookies.remove("authToken");
-        navigate("/home");
+        navigate("/");
     }
 
   return ( 
-    <div className='flex gap-5 flex-col justify-around items-center bg-white rounded-lg p-10'>
+    <div className={` flex gap-5 flex-col justify-around items-center rounded-lg p-10 ${darkTheme ? 'dark-theme' : 'light-theme'}`}>
         { isAsking && (
-            <div className='flex flex-col justify-center items-center gap-4'>
+            <div className={`flex flex-col justify-center items-center gap-4`}>
                 <IoWarningOutline className='w-20'/>
-                <span className='text-4xl'>¿Seguro que desea cerrar sesión?</span>
+                <p className='text-4xl'>¿Seguro que desea cerrar sesión?</p>
                 <span className='flex flex-row justify-between gap-4'>
                     <form onSubmit={handleSubmit} onAbort={handleAbort}>
-                        <button type="submit">Logout</button>
-                        <button type="abort" >Cancel</button>
+                        <button type="submit" className={`button ${darkTheme ? 'theme-dark-button' : 'theme-light-button'}`}>Logout</button>
+                        <button type="abort"  className={`button ${darkTheme ? 'theme-dark-button' : 'theme-light-button'}`}>Cancel</button>
                     </form>
                 </span>
             </div>
         )}
-        {isLoading && (
-                <div className="animate-pulse flex space-x-4">
+        {/* {isLoading && ( */}
+                {/* <div className="animate-pulse flex space-x-4">
                     <div className="rounded-full bg-slate-700 h-10 w-10"></div>
                     <div className="flex-1 space-y-6 py-1">
                     <div className="h-2 bg-slate-700 rounded"></div>
@@ -75,8 +77,8 @@ const Logout = () => {
                         <div className="h-2 bg-slate-700 rounded"></div>
                     </div>
                     </div>
-                </div>
-        )}
+                </div> */}
+        {/* )} */}
         {isError && (
             <div className='flex flex-col justify-center items-center gap-4'>
                 <VscError className='w-20'/>

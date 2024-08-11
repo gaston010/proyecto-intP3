@@ -23,7 +23,6 @@ const menus = [
   { name: "Más escuchados", path: "/news", icon: "star" },
   { name: "Géneros", path: "/genre", icon: "view_list" },
   { name: "Canciones", path: "/songs", icon: "headphones", margin: true },
-  { name: "Setting", path: "*", icon: "slider_horizontal" },
   { name: "Perfil", path: "/profile",  icon: "user", margin: true},
   { name: "Logout", path: "/logout",  icon: "logout", margin: true},
 ];

@@ -45,7 +45,7 @@ const MainLayout = () => {
         }}
       >
         <ThemeToggle />
-        <div style={token ? {flex: '1.5'} : {flex: ''}}>
+        <div style={token ? {flex: '1.5'} : {flex: '0'}}>
           {homePath || !token ? (
             ''
           ) : (
