@@ -1,6 +1,9 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Bubble from "./Bubble";
 import { IoGitMerge } from "react-icons/io5";
+import { IoIosLogIn } from "react-icons/io";
+
 import useRandomBubbleData from "../hooks/useRandomBubbleData.js";
 
 function Home() {
@@ -32,7 +35,16 @@ function Home() {
         </span>
         <span className="text-4xl text-shadow text-shadow-fuchsia-500 text-shadow-blur-5 text-shadow-x-3 text-shadow-y-1">
           Please login
-        </span>
+          </span>
+          <Link
+            to="/login"
+            className={`button is-primary blink`}
+          >
+            <span>Login</span>
+            <span className="icon">
+              <IoIosLogIn />
+            </span>
+          </Link>
       </div>
       <div className="flex justify-around"> 
         {
