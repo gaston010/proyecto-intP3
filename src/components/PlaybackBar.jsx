@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { MediaContext } from '../context/MediaContext';
 import Cookies from 'js-cookie';
 import useSong from './hooks/useSong';
+import { SiDocsdotrs } from 'react-icons/si';
 
 const PlaybackBar = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -11,27 +12,36 @@ const PlaybackBar = () => {
 
   const { 
           mediaFile, title, duration,
-          prev, next, mediaFileList,
-          setMediaFile, setTitle, setDuration,
-          setPrev, setNext
+          mediaFileList, setMediaFile, 
+					setTitle, setDuration,
+          index, setIndex
         } = useContext(MediaContext);
   const audioRef = useRef(null);  
 
-  const changeSong = (index) => {
-    const song = mediaFileList[index];
+  const changeSong = (ind) => {
+		let i;
+		switch (ind) {
+			case -1: i = mediaFileList.length + ind; break;
+		  case mediaFileList.length: i = 0; break;
+			default: i = ind; break;
+		}
+    const song = mediaFileList[i];
     setMediaFile(song.song_file);
     setTitle(song.title);
     setDuration(song.duration);
-    if(index+1 === mediaFileList.length){
-        setNext(0);
-    }
-    else if (index === 0){
-        setPrev(mediaFileList.length-1)
-    }
-    else {
-      setPrev(index-1);
-      setNext(index+1);
-    }
+    setIndex(i);
+    // if(index === mediaFileList.length){
+    //     setNext(0);
+		// 		setIndex(index-1);
+    // }
+    // else if (index === 0){
+    //     setPrev(mediaFileList.length-1)
+		// 		setNext(index+1)
+    // }
+    // else {
+    //   setPrev(index-1);
+    //   setNext(index+1);
+    // }
   };
 
   useEffect(() => {
@@ -54,10 +64,8 @@ const PlaybackBar = () => {
     if (mediaFile && audioRef.current) {
       audioRef.current.src = mediaFile;
       audioRef.current.load();
-      if (!isPlaying) {
-        togglePlayPause();
-        audioRef.current.play();
-      }
+      setIsPlaying(true);
+      audioRef.current.play();
     }
   }, [mediaFile]);
 
@@ -92,14 +100,14 @@ const PlaybackBar = () => {
 
   const handleNext = (e) => {
     // useSong(prev);
-    changeSong(next);
-    togglePlayPause();
+    changeSong(index+1);
+    // togglePlayPause();
   };
 
   const handlePrev = (e) => {
     // useSong(next);
-    changeSong(prev);
-    togglePlayPause();
+    changeSong(index-1);
+    // togglePlayPause();
   }
 
 

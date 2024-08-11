@@ -8,7 +8,7 @@ import { MediaContext } from "../../context/MediaContext";
 const SongCard = ({ song, index }) => {
     const { title, year, duration, view_count, song_file } = song;
     const [showPlayButton, setShowPlayButton] = useState(false);
-    const { setMediaFile, setTitle, setDuration, setPrev, setNext, isSameList, setIsSameList, setNewContext, length} = useContext(MediaContext); 
+    const { setIndex, setMediaFile, setTitle, setDuration, isSameList, setIsSameList, setNewContext } = useContext(MediaContext); 
   
     const handlePlayClick = () => {
     //Si la lista de canciones en la pantalla cambió, entonces deberá notificarse
@@ -17,13 +17,14 @@ const SongCard = ({ song, index }) => {
         setMediaFile(song_file);
         setTitle(title);
         setDuration(duration);
-        setPrev(index);
-        if(index+1 === length){
-            setNext(0);
-        }
-        else {
-            setNext(index+1);
-        }
+        setIndex(index);
+        // setPrev(index);
+        // if(index+1 === length){
+        //     setNext(0);
+        // }
+        // else {
+        //     setNext(index+1);
+        // }
     };
   
     return (
