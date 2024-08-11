@@ -6,12 +6,20 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { FaPlay } from "react-icons/fa";
 
 const SongCard = ({ song, index }) => {
-    const { title, year, duration, view_count, song_file } = song;
-    const [showPlayButton, setShowPlayButton] = useState(false);
-    const { setIndex, setMediaFile, setTitle, setDuration, isSameList, setIsSameList, setNewContext } = useContext(MediaContext); 
-    const { darkTheme } = useContext(ThemeContext);
-  
-    const handlePlayClick = () => {
+  const { title, year, duration, view_count, song_file } = song;
+  const [showPlayButton, setShowPlayButton] = useState(false);
+  const {
+    setIndex,
+    setMediaFile,
+    setTitle,
+    setDuration,
+    isSameList,
+    setIsSameList,
+    setNewContext,
+  } = useContext(MediaContext);
+  const { darkTheme } = useContext(ThemeContext);
+
+  const handlePlayClick = () => {
     //Si la lista de canciones en la pantalla cambió, entonces deberá notificarse
     //al componente SongsList que debe actualizar el SongListContext.
     !isSameList ? setNewContext(true) : setIsSameList(true);
@@ -19,13 +27,6 @@ const SongCard = ({ song, index }) => {
     setTitle(title);
     setDuration(duration);
     setIndex(index);
-    // setPrev(index);
-    // if(index+1 === length){
-    //     setNext(0);
-    // }
-    // else {
-    //     setNext(index+1);
-    // }
   };
 
   return (
@@ -44,15 +45,6 @@ const SongCard = ({ song, index }) => {
             <FaPlay />
           </button>
         )}
-        {/* <h2>{title}</h2> */}
-        {/* {year && <p><strong>Año:</strong> {year}</p>}
-          {duration && <p><strong>Duración:</strong> {duration} segundos</p>}
-          {song_file && (
-            <p>
-              <strong>Archivo:</strong> <a href={song_file} target="_blank" rel="noopener noreferrer">Escuchar</a>
-            </p>
-          )}
-          <p><strong>Vistas:</strong> {view_count}</p> */}
       </div>
       <div>
         <h2 className="text-lg font-bold">{title}</h2>

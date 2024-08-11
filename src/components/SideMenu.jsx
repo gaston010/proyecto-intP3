@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { RiSettings4Line, RiLogoutBoxLine } from "react-icons/ri";
+import { RiSettings4Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { FcNews } from "react-icons/fc";
 import { CiBoxList } from "react-icons/ci";
@@ -21,24 +21,14 @@ const menus = [
   { name: "Más escuchados", path: "/news", icon: "star" },
   { name: "Géneros", path: "/genre", icon: "view_list" },
   { name: "Canciones", path: "/songs", icon: "headphones", margin: true },
-  { name: "Perfil", path: "/profile",  icon: "user", margin: true},
-  { name: "Logout", path: "/logout",  icon: "logout", margin: true},
+  { name: "Perfil", path: "/profile", icon: "user", margin: true },
+  { name: "Logout", path: "/logout", icon: "logout", margin: true },
 ];
 
 const SideMenu = ({ toggleSideMenu, className }) => {
   const [open, setOpen] = useState(true);
   const token = Cookies.get("authToken");
   const { darkTheme } = useContext(ThemeContext);
-
-  // if (!token) {
-  //   return null;
-  // }
-
-  // const handleLogout = () => {
-
-  //   Cookies.remove("authToken");
-  //   window.location.href = "/login";
-  // };
 
   return (
     <section className={`flex gap-6`}>
@@ -101,26 +91,6 @@ const SideMenu = ({ toggleSideMenu, className }) => {
               </h2>
             </Link>
           ))}
-          {/* <button
-            onClick={handleLogout}
-            className="mt-5 group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md"
-          >
-            <div>
-            <CircumIcon name={`logout`}/>
-            </div>
-            <h2
-              className={`whitespace-pre duration-200 ${!open && "opacity-0 translate-x-10 overflow-hidden"
-                }`}
-            >
-              Logout
-            </h2>
-            <h2
-              className={`${open && "hidden"
-                } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit`}
-            >
-              Logout
-            </h2>
-          </button> */}
         </div>
       </div>
     </section>
