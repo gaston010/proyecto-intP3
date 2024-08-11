@@ -16,7 +16,7 @@ export const SongList = () => {
   const [next, setNext] = useState(null);
   const [previous, setPrevious] = useState(null);
 
-  const {newContext, setMediaFileList, setIsSameList} = useContext(MediaContext);
+  const {newContext, setMediaFileList, setIsSameList, setNewContext} = useContext(MediaContext);
   
   useEffect(() => {
     fetchSongs(
@@ -28,12 +28,13 @@ export const SongList = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setSongs(data.results);
+      const songNotNull = data.results.filter(song => song.song_file);
+      setSongs(songNotNull);
       setNext(data.next);
       setPrevious(data.previous);
       // setLength(songs.length)
       if(newContext){
-        setMediaFileList(data.results);
+        setMediaFileList(songNotNull);
       }
     } catch (error) {
       setError(error);
@@ -46,6 +47,7 @@ export const SongList = () => {
   useEffect(() => {
     if(newContext){
       setMediaFileList(songs);
+      setNewContext(false);
     }
   }, [newContext])
 
@@ -59,7 +61,8 @@ export const SongList = () => {
   }
 
   const handleNext = () => {
-    fetchSongs(next);
+    const endpoint = next.replace("http:", "https:");
+    fetchSongs(endpoint);
     setIsSameList(false);
   };
   const handlePrevious = () => {
@@ -68,7 +71,8 @@ export const SongList = () => {
         "https://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1"
       );
     } else {
-      fetchSongs(previous);
+      const endpoint = previous.replace("http:", "https:");
+      fetchSongs(endpoint);
     }
     setIsSameList(false);
   };
