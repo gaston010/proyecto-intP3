@@ -4,33 +4,37 @@ import PropTypes from 'prop-types';
 
 import { MediaContext } from '../context/MediaContext';
 import { SongsListContext } from '../../context/SongsListContext';
+import useFetch from '../hooks/useFetch';
 
 // const SongList = ({ songIds }) => {
 const PlayList = () => {
 
     //Solo utilizo los valores proporcionados por el Context para reenderizar el contenido
     const [{ songs, loading, error, next, previous}] = useContext(SongsListContext);
+    const [result, setResult] = useState(null);
 
   useEffect(() => {
-    fetchSongs(
-      'http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1'
-    );
+    // fetchSongs(
+    //   'http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1'
+    // );
+
+    setResult(useFetch('http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1'));
   }, []);
 
-  const fetchSongs = async (url) => {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setSongs(data.results);
-      setNext(data.next);
-      setPrevious(data.previous);
-    } catch (error) {
-      setError(error);
-      console.error('Error fetching data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const fetchSongs = async (url) => {
+  //   try {
+  //     const response = await fetch(url);
+  //     const data = await response.json();
+  //     setSongs(data.results);
+  //     setNext(data.next);
+  //     setPrevious(data.previous);
+  //   } catch (error) {
+  //     setError(error);
+  //     console.error('Error fetching data:', error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   if (loading) {
     return <p>Loading songs...</p>;

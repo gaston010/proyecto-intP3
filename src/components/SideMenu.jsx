@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import { RiSettings4Line, RiLogoutBoxLine } from "react-icons/ri";
 import React, { useState, useContext } from "react";
 import { RiSettings4Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
@@ -24,6 +26,8 @@ const menus = [
   { name: "Géneros", path: "/genre", icon: "view_list" },
   { name: "Canciones", path: "/songs", icon: "headphones", margin: true },
   { name: "Setting", path: "*", icon: "slider_horizontal" },
+  { name: "Perfil", path: "/profile",  icon: "slider_horizontal", margin: true},
+  { name: "Logout", path: "/logout",  icon: "slider_horizontal", margin: true},
 ];
 
 const SideMenu = ({ toggleSideMenu, className }) => {
@@ -32,15 +36,15 @@ const SideMenu = ({ toggleSideMenu, className }) => {
   const token = Cookies.get("authToken");
   const { darkTheme } = useContext(ThemeContext);
 
+  // if (!token) {
+  //   return null;
+  // }
 
-  if (!token) {
-    return null;
-  }
+  // const handleLogout = () => {
 
-  const handleLogout = () => {
-    Cookies.remove("authToken");
-    window.location.href = "/login";
-  };
+  //   Cookies.remove("authToken");
+  //   window.location.href = "/login";
+  // };
 
   return (
     <section className={`flex gap-6`}>
@@ -88,7 +92,7 @@ const SideMenu = ({ toggleSideMenu, className }) => {
               </h2>
             </Link>
           ))}
-          <button
+          {/* <button
             onClick={handleLogout}
             className="mt-5 group flex items-center text-sm gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md"
           >
@@ -107,7 +111,7 @@ const SideMenu = ({ toggleSideMenu, className }) => {
             >
               Logout
             </h2>
-          </button>
+          </button> */}
         </div>
       </div>
     </section>
