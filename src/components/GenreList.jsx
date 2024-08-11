@@ -62,9 +62,27 @@ const GenreList = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-4">Music Genres</h1>
+      <div className="flex items-center justify-center w-full mb-4">
+        {previousPageUrl && (
+          <button
+            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 mr-4"
+            onClick={() => fetchGenres(previousPageUrl)}
+          >
+            Previous
+          </button>
+        )}
+        <h1 className="text-2xl font-bold">Music Genres</h1>
+        {nextPageUrl && (
+          <button
+            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 ml-4"
+            onClick={() => fetchGenres(nextPageUrl)}
+          >
+            Next
+          </button>
+        )}
+      </div>
       {loading ? (
-        <p>Loading Genres..</p>
+        <p>Loading Genres...</p>
       ) : (
         <div className="flex flex-wrap w-full">
           <div className="w-full lg:w-2/3 p-4">
@@ -77,24 +95,6 @@ const GenreList = () => {
                   onEdit={handleEditGenre}
                 />
               ))}
-            </div>
-            <div className="flex justify-between mt-4">
-              {previousPageUrl && (
-                <button
-                  className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
-                  onClick={() => fetchGenres(previousPageUrl)}
-                >
-                  Previous
-                </button>
-              )}
-              {nextPageUrl && (
-                <button
-                  className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
-                  onClick={() => fetchGenres(nextPageUrl)}
-                >
-                  Next
-                </button>
-              )}
             </div>
           </div>
           <div className="w-full lg:w-1/3 p-4">
