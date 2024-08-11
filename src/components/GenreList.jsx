@@ -22,8 +22,17 @@ const GenreList = () => {
       const data = await response.json();
       if (data && Array.isArray(data.results)) {
         setGenres(data.results);
-        setNextPageUrl(data.next);
-        setPreviousPageUrl(data.previous);
+        const endpointNext = data.next.replace("http:", "https:");
+
+        setNextPageUrl(endpointNext);
+
+        if (!data.previous) {
+          setPreviousPageUrl("https://sandbox.academiadevelopers.com/harmonyhub/genres/page=1");
+        } else {
+          const newEndpointPrev = previous.replace("http:", "https:");
+          setPreviousPageUrl(newEndpointPrev);
+        }
+
       } else {
         console.error("Expected an array of genres in results");
       }
