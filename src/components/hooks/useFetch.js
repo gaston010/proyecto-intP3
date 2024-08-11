@@ -1,61 +1,38 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useState } from "react";
 
-const ACTIONS = {
-    FETCH_INIT: "FETCH_INIT",
-    FETCH_SUCCESS: "FETCH_SUCCESS",
-    FETCH_FAILURE: "FETCH_FAILURE",
-};
-
-function reducer(state, action) {
-    switch (action.type) {
-        case ACTIONS.FETCH_INIT:
-            return {
-                isError: false,
-                isLoading: true,
-            };
-        case ACTIONS.FETCH_SUCCESS:
-            return {
-                data: action.payload.data,
-                isError: false,
-                isLoading: false,
-            };
-        case ACTIONS.FETCH_FAILURE:
-            return {
-                isError: true,
-                isLoading: false,
-            };
-        default:
-            return state;
-    }
-}
-
-const useFetch = ({url, options = {}}) => {
-
-    // const [data, setData] = useState(null);
-    // const [isError, setIsError] = useState(false);
-    // const [isLoading, setIsLoading] = useState(true);
-
-    const [result, dispatch] = useReducer(reducer, { data: null, isError: false, isLoading: true });
+function useFetch(
+    url,
+    options = {},
+    errorMessage = "Error al relizar la petición"
+) {
+    const [data, setData] = useState(null);
+    const [isError, setIsError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        dispatch({ type: ACTIONS.FETCH_INIT });
+        setData(null);
+        setIsError(false);
+        setIsLoading(true);
 
         fetch(url, { ...options })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
                 }
-                throw Error("Error al relizar la petición");
+                throw Error(errorMessage);
             })
             .then((data) => {
-                dispatch({ type: ACTIONS.FETCH_SUCCESS, payload: { data } });
+                setData(data);
             })
             .catch((e) => {
-                dispatch({ type: ACTIONS.FETCH_FAILURE });
+                setIsError(true);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, [url]);
 
-    return result;
+    return [data, isError, isLoading];
 }
 
 export default useFetch;

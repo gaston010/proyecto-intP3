@@ -12,6 +12,9 @@ import AddArtistAssignment from "./components/AddArtistAssignment";
 // import Sidebar from "./components/Sidebar";
 import PrivateRoute from "./components/PrivateRoute"; // Asegúrate de importar PrivateRoute
 import Profile from "./components/profile/profile";
+import Logout from "./components/Logout";
+import { CgPlayList } from "react-icons/cg";
+// import { SongsList } from "./components/playlist/SongsList";
 
 const Router = createBrowserRouter([
   {
@@ -48,7 +51,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/songs",
-        element: <SongList />,
+        element: <SongList/>,
       },
       {
         path: "/add",
@@ -57,6 +60,10 @@ const Router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile/>
+      },
+      {
+        path: "/logout",
+        element: <Logout/>
       }
     ],
   },
