@@ -207,13 +207,28 @@
     color: #333 !important;
   }
   
-  .light-theme a{
+  .light-theme a, span{
     color:  #333;
     cursor: pointer;
   }
-  .dark-theme a{
+  .dark-theme a, span{
     color: #fff;
     cursor: pointer;
+  }
+
+  .dark-theme input{
+    background-color: #333;
+    color: #fff;
+  }
+  .light-theme input{
+    background-color: #fff;
+    color:  #333;
+  }
+  .light-theme input::placeholder, .theme-light-button{
+    color:  #333;
+  }
+  .dark-theme input::placeholder, .theme-dark-button{
+    color: #fff;
   }
 
   .border-light-theme{
@@ -223,4 +238,8 @@
   .border-dark-theme{
     border-radius: 8px;
     box-shadow: 0 2px 4px #000000;
+  }
+
+  .forgot-password{
+    padding: 2rem;
   }
