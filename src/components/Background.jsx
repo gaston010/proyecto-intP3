@@ -1,10 +1,15 @@
 // import React from "react";
 import PropTypes from "prop-types";
-import backgroundImage from "/src/assets/background-login.webp";
+import backgroundImageWhite from "/src/assets/background-login-white.jpg";
+import backgroundImageDark from "/src/assets/background-login.jpg";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Background = ({ children }) => {
+  const { darkTheme } = useContext(ThemeContext);
+
   const backgroundStyle = {
-    backgroundImage: `url(${backgroundImage})`,
+    backgroundImage: `url(${darkTheme ? backgroundImageDark : backgroundImageWhite})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     display: "flex",
@@ -13,6 +18,7 @@ const Background = ({ children }) => {
     alignItems: "center",
     width: '-webkit-fill-available'
   };
+
 
   return <div className="w-full" style={backgroundStyle}>{children}</div>;
 };

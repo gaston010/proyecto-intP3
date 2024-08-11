@@ -1,14 +1,15 @@
-import useSong from "../hooks/useSong";
 import { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { MediaContext } from "../../context/MediaContext";
-// import { SongCardContext } from "./SongsList";
+import { ThemeContext } from '../../context/ThemeContext';
+import { FaPlay } from "react-icons/fa";
 
 const SongCard = ({ song, index }) => {
     const { title, year, duration, view_count, song_file } = song;
     const [showPlayButton, setShowPlayButton] = useState(false);
     const { setMediaFile, setTitle, setDuration, setPrev, setNext, isSameList, setIsSameList, setNewContext, length} = useContext(MediaContext); 
+    const { darkTheme } = useContext(ThemeContext);
   
     const handlePlayClick = () => {
     //Si la lista de canciones en la pantalla cambió, entonces deberá notificarse
@@ -29,13 +30,13 @@ const SongCard = ({ song, index }) => {
     return (
       <div style={{display: 'flex', gap: '10px'}}>
         <div
-          className="song-card"
+          className={` ${darkTheme ? 'dark-theme song-card-dark' : 'light-theme song-card-light'}`}
           onMouseEnter={() => setShowPlayButton(true)}
           onMouseLeave={() => setShowPlayButton(false)}
         >
           {showPlayButton && (
             <button className="play-button" onClick={handlePlayClick}>
-              ▶️
+              <FaPlay />
             </button>
           )}
           {/* <h2>{title}</h2> */}
@@ -49,10 +50,10 @@ const SongCard = ({ song, index }) => {
           <p><strong>Vistas:</strong> {view_count}</p> */}
         </div>
         <div>
-          <h2>{title}</h2>
-          {year && <p><strong>Año:</strong> {year}</p>}
-          {duration && <p><strong>Duración:</strong> {duration} segundos</p>}
-          <p><strong>Vistas:</strong> {view_count}</p>
+          <h2 className="text-lg font-bold">{title}</h2>
+          {year && <p>Año:{year}</p>}
+          {duration && <p>Duración: {duration} segundos</p>}
+          <p>Vistas: {view_count}</p>
         </div>
       </div>
     );

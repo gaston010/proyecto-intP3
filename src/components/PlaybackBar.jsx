@@ -1,6 +1,10 @@
 // PlaybackBar.jsx
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { MediaContext } from '../context/MediaContext';
+import { ThemeContext } from '../context/ThemeContext';
+import CircumIcon from "@klarr-agency/circum-icons-react"
+
+
 import Cookies from 'js-cookie';
 import useSong from './hooks/useSong';
 
@@ -8,6 +12,8 @@ const PlaybackBar = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(50);
   const [progress, setProgress] = useState(0);
+  const { darkTheme } = useContext(ThemeContext);
+  
 
   const { 
           mediaFile, title, duration,
@@ -113,15 +119,14 @@ const PlaybackBar = () => {
 
   return (
     <div
-      className="bottom-0 bg-gray-900 text-white flex items-center justify-between p-4"
+      className={`bottom-0 flex items-center justify-between p-4 ${darkTheme ? 'border-dark-theme' : 'border-light-theme'}`}
       style={{
         display: `${mediaFile? 'flex':'none'}`,
         alignItems: 'center',
         justifyContent: 'space-between',
         position: 'fixed',
         bottom: '0',
-        background: 'hsl(220deg 13.04% 9.02%)',
-        boxShadow: '0px -1px 5px 0px rgba(0,0,0,0.75)',
+        background: `${darkTheme? '#333':'#fff'}`,
         minWidth: '-webkit-fill-available'
       }}
     >
@@ -136,11 +141,15 @@ const PlaybackBar = () => {
       >
         <h1>{title}</h1>
         <div className="flex items-center space-x-4">
-          <button onClick={handlePrev}>⏮️</button>
-          <button onClick={togglePlayPause} style={{ fontSize: '2rem' }}>
-            {isPlaying ? '⏸️' : '▶️'}
+          <button onClick={handlePrev}>
+            <CircumIcon name="square_chev_left"></CircumIcon>
           </button>
-          <button onClick={handleNext}>⏭️</button>
+          <button onClick={togglePlayPause} style={{ fontSize: '4rem' }}>
+            {isPlaying ? <CircumIcon name="pause_1" size="40px"></CircumIcon> : <CircumIcon name="play_1" size="40px"></CircumIcon>}
+          </button>
+          <button onClick={handleNext}>
+            <CircumIcon name="square_chev_right"></CircumIcon>
+          </button>
         </div>
         <div className="flex-1 mx-4">
           <div className="flex justify-between">
@@ -161,7 +170,7 @@ const PlaybackBar = () => {
         </div>
       </div>
       <div className="flex items-center space-x-2 mx-4">
-        <span>🔊</span>
+        <CircumIcon name="volume_high"/>
         <input
           type="range"
           min="0"
