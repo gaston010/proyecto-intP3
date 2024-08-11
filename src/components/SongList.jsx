@@ -20,7 +20,7 @@ export const SongList = () => {
   
   useEffect(() => {
     fetchSongs(
-      "http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1"
+      "https://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1"
     );
   }, []);
 
@@ -65,7 +65,7 @@ export const SongList = () => {
   const handlePrevious = () => {
     if (!previous) {
       fetchSongs(
-        "http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1"
+        "https://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1"
       );
     } else {
       fetchSongs(previous);
