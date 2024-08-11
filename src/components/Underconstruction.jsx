@@ -1,4 +1,3 @@
-// import React from "react";
 import constructionImage from "../assets/underweb.jpeg";
 import constructionImage2 from "../assets/underweb2.jpeg";
 import constructionImage3 from "../assets/underweb3.jpeg";
@@ -46,7 +45,7 @@ const styles = {
     left: 0,
     width: "100%",
     height: "100%",
-    objectFit: "cover", 
+    objectFit: "cover",
     zIndex: -1, // Asegura que la imagen esté detrás del texto
   },
   textContainer: {
@@ -54,11 +53,11 @@ const styles = {
     zIndex: 1, // Asegura que el texto esté por encima de la imagen
   },
   text: {
-    color: "#F32", 
+    color: "#F32",
     fontSize: "24px",
   },
   link: {
-    textDecoration: "none", 
+    textDecoration: "none",
   },
   button: {
     marginTop: "20px",

@@ -1,30 +1,28 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Bubble from "./Bubble";
-import { IoGitMerge } from "react-icons/io5";
 import { IoIosLogIn } from "react-icons/io";
 
 import useRandomBubbleData from "../hooks/useRandomBubbleData.js";
 
 function Home() {
-
   const [content, shuffleContent] = useRandomBubbleData();
-  
-  const imagesTop = content.slice(4,8);
-  const imagesBottom = content.slice(0,4);
+
+  const imagesTop = content.slice(4, 8);
+  const imagesBottom = content.slice(0, 4);
 
   useEffect(() => {
     const interval = setInterval(() => {
-          shuffleContent()
-        }, 4000);
+      shuffleContent();
+    }, 4000);
     return () => {
-        clearInterval(interval);
+      clearInterval(interval);
     };
-}, [imagesTop]);
+  }, [imagesTop]);
 
   return (
     <div className="flex flex-auto flex-col space-y-5">
-      <div className="flex justify-around"> 
+      <div className="flex justify-around">
         {imagesTop.map((item, index) => (
           <Bubble key={index} data={item} />
         ))}
@@ -35,26 +33,20 @@ function Home() {
         </span>
         <span className="text-4xl text-shadow text-shadow-fuchsia-500 text-shadow-blur-5 text-shadow-x-3 text-shadow-y-1">
           Please login
+        </span>
+        <Link to="/login" className={`button is-primary blink`}>
+          <span>Login</span>
+          <span className="icon">
+            <IoIosLogIn />
           </span>
-          <Link
-            to="/login"
-            className={`button is-primary blink`}
-          >
-            <span>Login</span>
-            <span className="icon">
-              <IoIosLogIn />
-            </span>
-          </Link>
+        </Link>
       </div>
-      <div className="flex justify-around"> 
-        {
-          imagesBottom.map((item, index) => (
-            <Bubble key={index} data={item} />
-          ))
-        }
+      <div className="flex justify-around">
+        {imagesBottom.map((item, index) => (
+          <Bubble key={index} data={item} />
+        ))}
       </div>
     </div>
-    
   );
 }
 
