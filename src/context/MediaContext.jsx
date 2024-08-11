@@ -7,8 +7,9 @@ export const MediaProvider = ({ children }) => {
   const [mediaFile, setMediaFile] = useState(null);
   const [title, setTitle] = useState('');
   const [duration, setDuration] = useState(0);
-  const [prev, setPrev] = useState(null);
-  const [next, setNext] = useState(null);
+  // const [prev, setPrev] = useState(null);
+  // const [next, setNext] = useState(null);
+  const [index, setIndex] = useState(0);
   const [isSameList, setIsSameList] = useState(true);
   const [newContext, setNewContext] = useState(true);
   // const [length, setLength] = useState(0);
@@ -19,8 +20,7 @@ export const MediaProvider = ({ children }) => {
         mediaFile, setMediaFile, 
         title, setTitle, 
         duration, setDuration,
-        prev, setPrev,
-        next, setNext,
+        index, setIndex,
         isSameList, setIsSameList,
         newContext, setNewContext,
       }

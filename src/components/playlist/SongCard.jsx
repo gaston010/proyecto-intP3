@@ -8,8 +8,12 @@ import { FaPlay } from "react-icons/fa";
 const SongCard = ({ song, index }) => {
     const { title, year, duration, view_count, song_file } = song;
     const [showPlayButton, setShowPlayButton] = useState(false);
+<<<<<<< HEAD
+    const { setIndex, setMediaFile, setTitle, setDuration, isSameList, setIsSameList, setNewContext } = useContext(MediaContext); 
+=======
     const { setMediaFile, setTitle, setDuration, setPrev, setNext, isSameList, setIsSameList, setNewContext, length} = useContext(MediaContext); 
     const { darkTheme } = useContext(ThemeContext);
+>>>>>>> 7a17fa6fe00c4f57047c597092b4d40fd30b5f11
   
     const handlePlayClick = () => {
     //Si la lista de canciones en la pantalla cambió, entonces deberá notificarse
@@ -18,13 +22,14 @@ const SongCard = ({ song, index }) => {
         setMediaFile(song_file);
         setTitle(title);
         setDuration(duration);
-        setPrev(index);
-        if(index+1 === length){
-            setNext(0);
-        }
-        else {
-            setNext(index+1);
-        }
+        setIndex(index);
+        // setPrev(index);
+        // if(index+1 === length){
+        //     setNext(0);
+        // }
+        // else {
+        //     setNext(index+1);
+        // }
     };
   
     return (
