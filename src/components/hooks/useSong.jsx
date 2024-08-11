@@ -6,22 +6,27 @@ import { useEffect, useContext } from "react";
 // import useFetch from "./useFetch";
 import { MediaContext } from "../../context/MediaContext";
 
-const useSong = ({index}) => {
-
-    const { mediaFileList, setMediaFile, setTitle, setDuration, setPrev, setNext } = useContext(MediaContext);
-    const song = mediaFileList[index+1];
-    useEffect(() => {
-        setMediaFile(song.song_file);
-        setTitle(song.title);
-        setDuration(song.duration);
-        setPrev(index);
-        if(index+1 === data.length){
-            setNext(0);
-        }
-        else {
-            setNext(index+1);
-        }
-    }, [index]);
-}
+const useSong = ({ index }) => {
+  const {
+    mediaFileList,
+    setMediaFile,
+    setTitle,
+    setDuration,
+    setPrev,
+    setNext,
+  } = useContext(MediaContext);
+  const song = mediaFileList[index + 1];
+  useEffect(() => {
+    setMediaFile(song.song_file);
+    setTitle(song.title);
+    setDuration(song.duration);
+    setPrev(index);
+    if (index + 1 === data.length) {
+      setNext(0);
+    } else {
+      setNext(index + 1);
+    }
+  }, [index]);
+};
 
 export default useSong;

@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
-
 const Carousel = ({ data }) => {
   const settings = {
     dots: false,
@@ -40,21 +39,22 @@ const Carousel = ({ data }) => {
 
   return (
     <div className="slider-container">
-      <Slider {...settings} className="max-w-full" >
+      <Slider {...settings} className="max-w-full">
         {data.map((obj) => (
           <div key={obj.rank} className="p-4 ">
             <div className="shadow-md rounded-lg">
-              <div className={`card ${darkTheme ? "dark-theme" : "light-theme"}`}>
+              <div
+                className={`card ${darkTheme ? "dark-theme" : "light-theme"}`}
+              >
                 <img
                   src={obj.image}
                   alt={obj.name}
                   className="object-cover w-full h-full"
                   style={{ height: "200px" }}
-                  />
+                />
                 <div className="p-4 flex flex-row items-center">
                   <h1 className="text-5xl">{obj.rank}</h1>
                   <h2 className="text-sm font-bold mb-2">{obj.name}</h2>
-
                 </div>
               </div>
             </div>
