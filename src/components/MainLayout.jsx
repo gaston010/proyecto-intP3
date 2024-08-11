@@ -10,6 +10,7 @@ import Cookies from 'js-cookie';
 import { MediaProvider } from '../context/MediaContext';
 import ThemeToggle from './ThemeToggle';
 import { ThemeContext } from '../context/ThemeContext';
+import MediaPlayer from './playlist/MediaPlayer';
 
 const MainLayout = () => {
   const location = useLocation();
