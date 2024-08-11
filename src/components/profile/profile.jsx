@@ -32,21 +32,27 @@ const Profile = () => {
     };
 
     useEffect(() => {
+        const token = Cookies.get("authToken");
+        if (!token) {
+            console.error("No token found. Please log in.");
+            setError("No token found. Please log in.");
+            return;
+        }
         fetchProfile(
-            "http://sandbox.academiadevelopers.com/users/profiles/1",
+            "http://sandbox.academiadevelopers.com/users/profiles/profile_data/",
             {
                 method: "GET",
                 headers: {
-                  "Content-Type": "application/json",
-                  "X-CSRFToken": Cookies.get("authToken"),
-                },
-              }
+                "Content-Type": "application/json",
+                "Authorization": `Token ${token}`
+                }
+            }
         )
     }, []);
 
     const url = 'https://yt3.ggpht.com/a/AATXAJzSv13Gra7X1Y93EuS_713fDbTJAehAKYlBSw=s900-c-k-c0xffffffff-no-rj-mo';
     
-  return (
+  return ( 
     <div className='flex gap-5 flex-col justify-around items-center bg-white rounded-lg p-10'>
         {isLoading && (
             // <span className='animate-spin size-32'></span>
