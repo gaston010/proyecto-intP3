@@ -3,15 +3,19 @@ import React, { createContext, useState } from 'react';
 export const SongsListContext = createContext();
 
 export const SongsListProvider = ({ children }) => {
-  const [songs, setSongs] = useState([]);
+  const [currPage, setCurrPage] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [next, setNext] = useState(null);
-  const [previous, setPrevious] = useState(null);
+  const [nextPage, setNextPage] = useState(null);
+  const [prevPage, setPrevPage] = useState(null);
 
   return (
     <SongsListContext.Provider value={
-      { songs, setSongs , loading, setLoading, error, setError, next, setNext, previous, setPrevious}
+      { 
+        currPage, setCurrPage,
+        loading, setLoading,
+        nextPage, setNextPage,
+        prevPage, setPrevPage,
+      }
     }>
       {children}
     </SongsListContext.Provider>
