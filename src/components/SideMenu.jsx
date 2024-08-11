@@ -21,10 +21,10 @@ const homeButtons = [
 ];
 
 const menus = [
-  { name: "Más escuchados", path: "/news", icon: FcNews },
-  { name: "Géneros", path: "/genre", icon: CiBoxList },
-  { name: "Canciones", path: "/songs", icon: GiLoveSong, margin: true },
-  { name: "Setting", path: "/", icon: RiSettings4Line },
+  { name: "Más escuchados", path: "/news", icon: Star },
+  { name: "Géneros", path: "/genre", icon: View_list },
+  { name: "Canciones", path: "/songs", icon: Headphones, margin: true },
+  { name: "Setting", path: "/", icon: Slider_horizontal },
 ];
 
 const SideMenu = ({ toggleSideMenu, className }) => {
@@ -50,12 +50,14 @@ const SideMenu = ({ toggleSideMenu, className }) => {
         <div className="flex justify-between">
           <span className={`content-center justify-start font-bold text-lg 
         whitespace-pre duration-200 ${!open && "opacity-0 translate-x-10 overflow-hidden"}`}>MusicApp</span>
+
           <span className="justify-end py-3 flex">
             <FaBars
               className="cursor-pointer"
               onClick={() => { setOpen(!open), toggleSideMenu() }}
             />
           </span>
+        
         </div>
         <div className="mt-4 flex flex-col gap-4 relative">
           {menus.map((menu, index) => (
