@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import { RiSettings4Line, RiLogoutBoxLine } from "react-icons/ri";
-import React, { useState, useContext } from "react";
-import { RiSettings4Line } from "react-icons/ri";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FcNews } from "react-icons/fc";
 import { CiBoxList } from "react-icons/ci";
@@ -26,8 +24,8 @@ const menus = [
   { name: "Géneros", path: "/genre", icon: "view_list" },
   { name: "Canciones", path: "/songs", icon: "headphones", margin: true },
   { name: "Setting", path: "*", icon: "slider_horizontal" },
-  { name: "Perfil", path: "/profile",  icon: "slider_horizontal", margin: true},
-  { name: "Logout", path: "/logout",  icon: "slider_horizontal", margin: true},
+  { name: "Perfil", path: "/profile",  icon: "user", margin: true},
+  { name: "Logout", path: "/logout",  icon: "logout", margin: true},
 ];
 
 const SideMenu = ({ toggleSideMenu, className }) => {
@@ -56,11 +54,11 @@ const SideMenu = ({ toggleSideMenu, className }) => {
       >
         <div className="flex justify-between">
           <span className={`content-center justify-start font-bold text-lg 
-        whitespace-pre duration-200 ${!open && "opacity-0 translate-x-10 overflow-hidden"}`}>MusicApp</span>
+        whitespace-pre duration-200 ${!open && "opacity-0 translate-x-10 overflow-hidden" } ${darkTheme ? 'dark-theme' : 'light-theme'}`}>MusicApp</span>
 
           <span className="justify-end py-3 flex">
             <FaBars
-              className="cursor-pointer"
+              className={`cursor-pointe ${darkTheme ? 'dark-theme' : 'light-theme'}`}
               onClick={() => { setOpen(!open), toggleSideMenu() }}
             />
           </span>
