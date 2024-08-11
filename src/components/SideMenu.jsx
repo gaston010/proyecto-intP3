@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState, useContext } from "react";
 import { RiSettings4Line, RiLogoutBoxLine } from "react-icons/ri";
-import React, { useState, useContext } from "react";
-import { RiSettings4Line } from "react-icons/ri";
+// import { RiSettings4Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { FcNews } from "react-icons/fc";
 import { CiBoxList } from "react-icons/ci";
