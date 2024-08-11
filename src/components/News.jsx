@@ -4,6 +4,8 @@ import Carousel from './Carousel';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { BsDashLg } from 'react-icons/bs';
 import { FaRegCirclePlay } from "react-icons/fa6";
+import CircumIcon from "@klarr-agency/circum-icons-react"
+
 
 const News = () => {
   const [newsData, setNewsData] = useState([]);
@@ -108,10 +110,10 @@ const BillboardTop100 = () => {
 
       <div className='justify-around text-5xl'>
         <button onClick={prevPage} disabled={currentPage === 1}>
-        ⏮️
+        <CircumIcon name="square_chev_left"></CircumIcon>
         </button>
         <button onClick={nextPage} disabled={currentPage === Math.ceil(songs.length / songsPerPage)}>
-        ⏭️
+        <CircumIcon name="square_chev_right"></CircumIcon>
         </button>
       </div>
 
@@ -127,7 +129,7 @@ const BillboardTop100 = () => {
                 ) : <BsDashLg className="text-gray-500"/>}
             </div>
 
-            <h1 className="text-gray-500 text-2xl" >{song.rank}</h1>
+            <h1 className="text-2xl" >{song.rank}</h1>
             <div className="w-16 h-16">
               <img src={song.image} alt={song.title} className="w-full h-full object-cover" />
             </div>
@@ -136,7 +138,7 @@ const BillboardTop100 = () => {
                 <h2 className="text-lg font-bold">{song.title}</h2>  
               </FaRegCirclePlay>
               <h3 className="text-lg font-bold">{song.name}</h3>
-              <p className="text-gray-500">{song.artist}</p>
+              <p >{song.artist}</p>
             </div>
           </li>
         ))}

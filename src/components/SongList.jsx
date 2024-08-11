@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import PropTypes from "prop-types";
 import { MediaContext } from "../context/MediaContext";
-import songImage from "../assets/song.png";
+// import songImage from "../assets/song.png";
 import "bulma/css/bulma.min.css";
 
 import SongCard from "./playlist/SongCard";
+import CircumIcon from "@klarr-agency/circum-icons-react"
 
 // export const SongCardContext = createContext();
 
@@ -75,15 +76,17 @@ export const SongList = () => {
   return (
     <div>
       <div className="song-action-buttons">
-        <button onClick={handlePrevious}>⏮️</button>
-        <button onClick={handleNext}>⏭️</button>
+        <button onClick={handlePrevious}>
+        <CircumIcon name="square_chev_left" />
+        </button>
+        <button onClick={handleNext}>
+          <CircumIcon name="square_chev_right" />
+          </button>
       </div>
       {/* <SongCardContext.Provider value={{isSameList, setNewContext, setIsSameList, length }}> */}
-      <div className="columns is-multiline">
+      <div className="song-grid">
         {songs.map((song, index) => (
-          <div className="column is-half" key={song.id}>
-            <SongCard index={index} song={song} />
-          </div>
+            <SongCard key={song.id} index={index} song={song} />
         ))}
       </div>
       {/* </SongCardContext.Provider> */}

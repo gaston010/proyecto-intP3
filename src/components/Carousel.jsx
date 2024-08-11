@@ -3,6 +3,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
+
 
 const Carousel = ({ data }) => {
   const settings = {
@@ -33,13 +36,15 @@ const Carousel = ({ data }) => {
     ],
   };
 
+  const { darkTheme } = useContext(ThemeContext);
+
   return (
     <div className="slider-container">
       <Slider {...settings} className="max-w-full" >
         {data.map((obj) => (
-          <div key={obj.rank} className="p-4">
+          <div key={obj.rank} className="p-4 ">
             <div className="shadow-md rounded-lg">
-              <div className="card">
+              <div className={`card ${darkTheme ? "dark-theme" : "light-theme"}`}>
                 <img
                   src={obj.image}
                   alt={obj.name}
@@ -49,13 +54,7 @@ const Carousel = ({ data }) => {
                 <div className="p-4 flex flex-row items-center">
                   <h1 className="text-5xl">{obj.rank}</h1>
                   <h2 className="text-sm font-bold mb-2">{obj.name}</h2>
-                  {/* <p className="text-gray-700 mb-4">{obj.bio}</p> */}
-                  {/* <a
-                    href={obj.website}
-                    className="text-blue-500 hover:underline"
-                  >
-                    Learn More
-                  </a> */}
+
                 </div>
               </div>
             </div>

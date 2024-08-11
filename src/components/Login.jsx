@@ -5,6 +5,7 @@ import { LuLogIn } from "react-icons/lu";
 import { IoKey } from "react-icons/io5";
 import Cookies from "js-cookie";
 import "../Style.css";
+import { ThemeProvider } from "../context/ThemeContext";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");

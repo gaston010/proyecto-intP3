@@ -2,6 +2,7 @@
 import { createRoot } from "react-dom/client";
 import Router from "./Router";
 import { RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext";
 import "./Style.css";
 const App = () => {
   return (
@@ -9,4 +10,8 @@ const App = () => {
   );
 };
 
-createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(
+<ThemeProvider>
+  <App />
+</ThemeProvider>
+);
