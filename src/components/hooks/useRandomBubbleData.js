@@ -4,14 +4,14 @@ import { useState } from "react";
 //con src y delay aleatorios.
 
 const sourceList = [
-  {src: "/src/assets/bass.gif", delay: 2000},
-  {src: "/src/assets/speaker.gif", delay: 0},
-  {src: "/src/assets/piano.gif", delay: 2000},
-  {src: "/src/assets/drums.gif", delay: 0},
-  {src: "/src/assets/eguitar.gif", delay: 0},
-  {src: "/src/assets/saxo.gif", delay: 2000},
-  {src: "/src/assets/chelo.gif", delay: 0},
-  {src: "/src/assets/guitar.gif", delay: 2000}
+  {src: "../../assets/bass.gif", delay: 2000},
+  {src: "../../assets/speaker.gif", delay: 0},
+  {src: "../../assets/piano.gif", delay: 2000},
+  {src: "../../assets/drums.gif", delay: 0},
+  {src: "../../assets/eguitar.gif", delay: 0},
+  {src: "../../assets/saxo.gif", delay: 2000},
+  {src: "../../assets/chelo.gif", delay: 0},
+  {src: "../../assets/guitar.gif", delay: 2000}
 ];
 
 //Custom Hook to shuffle the content to be placed on each Bubble component

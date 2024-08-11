@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { VscError } from "react-icons/vsc";
 import Cookies from 'js-cookie';
+import { ThemeContext } from '../../context/ThemeContext';
+
 
 const Profile = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -12,6 +14,8 @@ const Profile = () => {
     const [email, setEmail] = useState('');
     const [profPic, setProfPic] = useState('');
     const [uState, setUState] = useState(null);
+    const { darkTheme } = useContext(ThemeContext);
+
 
     const fetchProfile = async (url, options = {}) => {
         try {
@@ -39,7 +43,7 @@ const Profile = () => {
             return;
         }
         fetchProfile(
-            "http://sandbox.academiadevelopers.com/users/profiles/profile_data/",
+            "https://sandbox.academiadevelopers.com/users/profiles/profile_data/",
             {
                 method: "GET",
                 headers: {
@@ -53,19 +57,19 @@ const Profile = () => {
     const url = 'https://yt3.ggpht.com/a/AATXAJzSv13Gra7X1Y93EuS_713fDbTJAehAKYlBSw=s900-c-k-c0xffffffff-no-rj-mo';
     
   return ( 
-    <div className='flex gap-5 flex-col justify-around items-center bg-white rounded-lg p-10'>
+    <div className={`flex gap-5 flex-col justify-around items-center rounded-lg p-10 ${darkTheme ? 'dark-theme':'light-theme'}`}>
         {isLoading && (
             // <span className='animate-spin size-32'></span>
                 <div className="animate-pulse flex space-x-4">
-                    <div className="rounded-full bg-slate-700 h-10 w-10"></div>
+                    <div className="rounded-full  h-10 w-10"></div>
                     <div className="flex-1 space-y-6 py-1">
-                    <div className="h-2 bg-slate-700 rounded"></div>
+                    <div className="h-2  rounded"></div>
                     <div className="space-y-3">
                         <div className="grid grid-cols-3 gap-4">
-                        <div className="h-2 bg-slate-700 rounded col-span-2"></div>
-                        <div className="h-2 bg-slate-700 rounded col-span-1"></div>
+                        <div className="h-2  rounded col-span-2"></div>
+                        <div className="h-2  rounded col-span-1"></div>
                         </div>
-                        <div className="h-2 bg-slate-700 rounded"></div>
+                        <div className="h-2  rounded"></div>
                     </div>
                     </div>
                 </div>
