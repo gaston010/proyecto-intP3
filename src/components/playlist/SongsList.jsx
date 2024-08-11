@@ -25,6 +25,17 @@ export const SongsList = () => {
     const [isSameList, setIsSameList] = useState(true);
     const {data, isError, isLoading,} = useFetch(url);
 
+    // const [result, setResult] = useState(null);
+    // const result = useFetch(url);
+
+    // useEffect(() => {
+    //   // fetchSongs(
+    //   //   'http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1'
+    //   // );
+
+    //   setResult(useFetch('http://sandbox.academiadevelopers.com/harmonyhub/songs/?page=1'));
+    // }, []);
+
   //Sólo actualizar el contexto de lista de reproducción cuando se detecte que
   //ha cambiado la lista en pantalla y se halla reproducido una canción de dicha lista
   // useEffect(() => {
