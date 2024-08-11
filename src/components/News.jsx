@@ -4,6 +4,8 @@ import Carousel from './Carousel';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { BsDashLg } from 'react-icons/bs';
 import { FaRegCirclePlay } from "react-icons/fa6";
+import CircumIcon from "@klarr-agency/circum-icons-react"
+
 
 const News = () => {
   const [newsData, setNewsData] = useState([]);
@@ -108,10 +110,10 @@ const BillboardTop100 = () => {
 
       <div className='justify-around text-5xl'>
         <button onClick={prevPage} disabled={currentPage === 1}>
-        ⏮️
+        <CircumIcon name="square_chev_left"></CircumIcon>
         </button>
         <button onClick={nextPage} disabled={currentPage === Math.ceil(songs.length / songsPerPage)}>
-        ⏭️
+        <CircumIcon name="square_chev_right"></CircumIcon>
         </button>
       </div>
 

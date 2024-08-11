@@ -45,11 +45,11 @@ const MainLayout = () => {
         }}
       >
         <ThemeToggle />
-        <div style={{ flex: '1.5' }}>
+        <div style={token ? {flex: '1.5'} : {flex: ''}}>
           {homePath || !token ? (
-            <Navbar />
+            ''
           ) : (
-            <SideMenu
+            <SideMenu 
               className={isSideMenuOpen ? 'open' : 'closed'}
               toggleSideMenu={toggleSideMenu}
             />
@@ -60,10 +60,10 @@ const MainLayout = () => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'flex-start'
           }}
         >
-          <main className="main" style={{ flex: 1 }}>
+          <main className="main" style={{ flex: 1.5 }}>
             {showBackground ? (
               <Background>
                 <Outlet />

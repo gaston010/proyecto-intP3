@@ -119,7 +119,7 @@
   .song-card-light {
     width: 5rem;
     height: 5rem;
-    border: 1px solid #ccc;
+    /* border: 1px solid #333; */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-image: url('./assets/song-light.png');
@@ -132,7 +132,7 @@
   .song-card-dark {
     width: 5rem;
     height: 5rem;
-    border: 1px solid #ccc;
+    /* border: 1px solid #fff; */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-image: url('./assets/song-dark.png');
@@ -177,7 +177,7 @@
   }
 
   .with-sidemenu {
-    flex: 6;
+    flex: 7;
   }
   
   .without-sidemenu {
@@ -214,4 +214,13 @@
   .dark-theme a{
     color: #fff;
     cursor: pointer;
+  }
+
+  .border-light-theme{
+    border-radius: 8px;
+    box-shadow: 0 2px 4px #333;
+  }
+  .border-dark-theme{
+    border-radius: 8px;
+    box-shadow: 0 2px 4px #000000;
   }
