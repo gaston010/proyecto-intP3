@@ -87,7 +87,7 @@ const Profile = () => {
         <>
           <div className="flex flex-col space-y-4 justify-around items-center">
             <img
-              src={url}
+              src={profPic? profPic : url}
               alt="profile picture"
               className="rounded-full w-32 shadow-lg shadow-fuchsia-500"
             />
