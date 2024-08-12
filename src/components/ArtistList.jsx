@@ -55,18 +55,10 @@ const ArtistList = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between mb-4">
-        <button
-          onClick={handlePrevious}
-          disabled={!previous}
-          className=""
-        >
+        <button onClick={handlePrevious} disabled={!previous} className="">
           ⏮️ Previous
         </button>
-        <button
-          onClick={handleNext}
-          disabled={!next}
-          className=""
-        >
+        <button onClick={handleNext} disabled={!next} className="">
           Next ⏭️
         </button>
       </div>

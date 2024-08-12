@@ -1,25 +1,22 @@
-import React, { useState, useContext } from 'react';
-import Background from './Background';
-import PlaybackBar from './PlaybackBar';
-import SideMenu from './SideMenu';
-import Navbar from './Navbar';
+import { useState, useContext } from "react";
+import Background from "./Background";
+import PlaybackBar from "./PlaybackBar";
+import SideMenu from "./SideMenu";
 
-import { Outlet, useLocation } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { Outlet, useLocation } from "react-router-dom";
+import Cookies from "js-cookie";
 
-import { MediaProvider } from '../context/MediaContext';
-import ThemeToggle from './ThemeToggle';
-import { ThemeContext } from '../context/ThemeContext';
-import MediaPlayer from './playlist/MediaPlayer';
+import { MediaProvider } from "../context/MediaContext";
+import ThemeToggle from "./ThemeToggle";
+import { ThemeContext } from "../context/ThemeContext";
 
 const MainLayout = () => {
   const location = useLocation();
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(true);
-  const token = Cookies.get('authToken');
+  const token = Cookies.get("authToken");
 
-
-  const noBackgroundRoutes = ['/underconstruction'];
-  const noNavBarRoutes = ['/', '/login'];
+  const noBackgroundRoutes = ["/underconstruction"];
+  const noNavBarRoutes = ["/", "/login"];
 
   const showBackground = !noBackgroundRoutes.includes(location.pathname);
 
@@ -31,36 +28,34 @@ const MainLayout = () => {
     setIsSideMenuOpen(!isSideMenuOpen);
   };
 
-
-
   return (
     <MediaProvider>
       <div
-      className={darkTheme ? 'dark-theme' : 'light-theme'}
+        className={darkTheme ? "dark-theme" : "light-theme"}
         style={{
-          display: 'flex',
-          flexDirection: 'row',
-          minHeight: '100vh',
-          minWidth: '100vw'
+          display: "flex",
+          flexDirection: "row",
+          minHeight: "100vh",
+          minWidth: "100vw",
         }}
       >
         <ThemeToggle />
-        <div style={token ? {flex: '1.5'} : {flex: ''}}>
+        <div style={token ? { flex: "1.5" } : { flex: "0" }}>
           {homePath || !token ? (
-            ''
+            ""
           ) : (
-            <SideMenu 
-              className={isSideMenuOpen ? 'open' : 'closed'}
+            <SideMenu
+              className={isSideMenuOpen ? "open" : "closed"}
               toggleSideMenu={toggleSideMenu}
             />
           )}
         </div>
         <section
-          className={isSideMenuOpen ? 'with-sidemenu' : 'without-sidemenu'}
+          className={isSideMenuOpen ? "with-sidemenu" : "without-sidemenu"}
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start'
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
           }}
         >
           <main className="main" style={{ flex: 1.5 }}>
@@ -72,7 +67,7 @@ const MainLayout = () => {
               <Outlet />
             )}
           </main>
-          {token ? <PlaybackBar /> : ''}
+          {token ? <PlaybackBar /> : ""}
         </section>
       </div>
     </MediaProvider>
