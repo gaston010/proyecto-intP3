@@ -22,9 +22,14 @@ HarmonyHub es una aplicación de reproductor de música simple, diseñada para g
 
 ## Features
 
+- Explorar la sección de novedades y top de canciones mas populares.
 - Añadir géneros musicales.
-- Añadir canciones y gestionarlas.
+- Obtener una lista de canciones.
+- Reproducir canciones en segundo plano permitiendo la navegación de la aplicación en simultáneo.
 - Reproducir música con controles intuitivos y explorar canciones relacionadas.
+- Accesibilidad: Temas oscuro y claro.
+- Iniciar/cerrar sesión en la applicación.
+- Consultar información del perfil del usuario logueado.
 
 ## Uso
 

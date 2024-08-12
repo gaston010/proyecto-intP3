@@ -82,12 +82,16 @@ export const SongList = () => {
   return (
     <div>
       <div className="song-action-buttons">
-        <button onClick={handlePrevious}>
-          <CircumIcon name="square_chev_left" />
-        </button>
-        <button onClick={handleNext}>
-          <CircumIcon name="square_chev_right" />
-        </button>
+        { previous && (
+          <button onClick={handlePrevious}>
+            <CircumIcon name="square_chev_left" />
+          </button>
+        )}
+        { next && (
+          <button onClick={handleNext}>
+            <CircumIcon name="square_chev_right" />
+          </button>
+        )}
       </div>
       {/* <SongCardContext.Provider value={{isSameList, setNewContext, setIsSameList, length }}> */}
       <div className="song-grid">

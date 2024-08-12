@@ -11,6 +11,7 @@ const Profile = () => {
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
   const [email, setEmail] = useState("");
+  const [profPic, setProfPic] = useState('');
   const [uState, setUState] = useState(null);
   const { darkTheme } = useContext(ThemeContext);
 
@@ -86,7 +87,7 @@ const Profile = () => {
         <>
           <div className="flex flex-col space-y-4 justify-around items-center">
             <img
-              src={url}
+              src={profPic? profPic : url}
               alt="profile picture"
               className="rounded-full w-32 shadow-lg shadow-fuchsia-500"
             />
