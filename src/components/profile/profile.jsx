@@ -11,6 +11,7 @@ const Profile = () => {
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
   const [email, setEmail] = useState("");
+  const [profPic, setProfPic] = useState('');
   const [uState, setUState] = useState(null);
   const { darkTheme } = useContext(ThemeContext);
 
